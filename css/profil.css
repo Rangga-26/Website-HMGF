@@ -1,0 +1,1031 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800;1,900&family=Playfair+Display:ital,wght@1,700;1,800&display=swap');
+
+/* ==========================================
+   PROFIL, SEJARAH & KEPENGURUSAN HMGF UGM (OIKOS THEME)
+   ========================================== */
+
+:root {
+    --bg-dark: #080c16;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --accent-blue: #E13062; /* Menggunakan warna aksen utama (Pink / Red-Purple Oikos) */
+    --accent-purple: #6c5ce7;
+    --accent-purple-light: #a29bfe;
+    --text-light: #f0f4f8;
+    --text-dim: #94a3b8;
+    --navbar-height: 90px;
+}
+
+/* Global Box Sizing & Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   GARIS PEMBATAS SEDERHANA (LINE BIASA)
+   ========================================== */
+.section-divider {
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    margin: 35px auto 40px auto;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+}
+
+/* ==========================================
+   REUSABLE STACKED TITLE SYSTEM
+   ========================================== */
+.stacked-title-header,
+.profil-header,
+.kepengurusan-header {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: calc(var(--navbar-height) + 30px) !important;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.stacked-title,
+.profil-title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 650px;       
+    margin: 0 auto;         
+}
+
+/* BARIS 1 */
+.stacked-title .title-top,
+.profil-title .title-top {
+    display: block;
+    align-self: flex-start;  
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 900;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.9);
+    transform: translateX(50px);
+}
+
+/* BARIS 2 */
+.stacked-title .title-bottom,
+.profil-title .title-bottom {
+    display: block;
+    align-self: flex-end;    
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 800;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 0.85;
+    margin-top: 10px;        
+    letter-spacing: 0px;
+    text-shadow: 3px 5px 12px rgba(0, 0, 0, 0.95);
+    transform: translateX(-50px);
+}
+
+/* ==========================================
+   KONTAINER PROFIL & LAYOUT CONTENT
+   ========================================== */
+.profil-container {
+    max-width: 1200px;
+    margin: 40px auto 100px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.profil-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.profil-logo-img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.7)) 
+            drop-shadow(0 0 20px rgba(225, 48, 98, 0.3));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                filter 0.5s ease;
+}
+
+.profil-logo-img:hover {
+    transform: scale(1.08) translateY(-8px);
+    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.8)) 
+            drop-shadow(0 0 35px rgba(225, 48, 98, 0.5));
+}
+
+.profil-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 36px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profil-card:hover {
+    border-color: rgba(225, 48, 98, 0.5);
+    box-shadow: 0 25px 50px rgba(225, 48, 98, 0.2);
+}
+
+.profil-img-wrapper {
+    width: 100%;
+    border-radius: 24px;
+    overflow: visible !important; 
+    background: radial-gradient(circle at center, rgba(225, 48, 98, 0.25) 0%, rgba(8, 12, 22, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profil-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: top center;
+    transform: scale(1.05) translateY(10px); 
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8));
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                filter 0.5s ease;
+}
+
+.profil-card:hover .profil-main-img {
+    transform: scale(1.1) translateY(0px);
+    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.9)) 
+            drop-shadow(0 0 25px rgba(225, 48, 98, 0.4));
+}
+
+.profil-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    text-align: justify;
+    text-indent: 2rem;
+    margin: 0;
+}
+
+/* ==========================================
+   MAIN GRID CONTAINER & KABINET BRAND
+   ========================================== */
+.kabinet-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 60px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.kabinet-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.logo-oikos {
+    display: block !important;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.75));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+}
+
+.logo-oikos:hover {
+    transform: scale(1.05) translateY(-4px);
+    filter: drop-shadow(0 20px 35px rgba(225, 48, 98, 0.45));
+}
+
+.kabinet-subtitle {
+    display: block !important;
+    width: 100%;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin: 4px 0 12px 0;
+    text-align: center;
+}
+
+.btn-visi-misi {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-width: 200px;
+    max-width: 280px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(225, 48, 98, 0.5);
+    background: rgba(30, 41, 59, 0.75);
+    color: #ffffff !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    margin-top: 50px !important; 
+    clear: both;
+}
+
+.btn-visi-misi:hover {
+    background: rgba(225, 48, 98, 0.3);
+    border-color: var(--accent-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(225, 48, 98, 0.4);
+}
+
+/* ==========================================
+   RIGHT COLUMN - CARD IMAGE & POP-OUT EFFECT
+   ========================================== */
+.kabinet-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 36px 32px 32px 32px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible !important;
+    position: relative;
+    margin-top: 20px;
+}
+
+.kabinet-card:hover {
+    border-color: rgba(225, 48, 98, 0.4);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.phpi-img-wrapper {
+    width: 100%;
+    position: relative;
+    background: rgba(10, 15, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: visible !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phpi-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: top center;
+    transform: scale(1.08) translateY(5px);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.75));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+}
+
+.kabinet-card:hover .phpi-img {
+    transform: scale(1.12) translateY(-5px);
+    filter: drop-shadow(0 20px 35px rgba(225, 48, 98, 0.35));
+}
+
+.kabinet-philosophy {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #e2e8f0;
+    text-align: justify;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   SECTION FILOSOFI LOGO KABINET
+   ========================================== */
+.logo-section {
+    max-width: 1200px;
+    margin: 20px auto 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.logo-section-header {
+    margin-bottom: 10px !important;
+}
+
+.logo-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: center;
+    overflow: visible !important;
+}
+
+.logo-section .logo-detail-container:first-of-type,
+.logo-section .logo-detail-container:first-child {
+    margin-top: -30px !important;
+}
+
+.logo-detail-container.reverse {
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.logo-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible !important;
+}
+
+.logo-oikos-icon {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+    transform: scale(1.1) translateY(-12px);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.75));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+}
+
+.logo-icon-wrapper:hover .logo-oikos-icon,
+.logo-detail-container:hover .logo-oikos-icon {
+    transform: scale(1.2) translateY(-20px);
+    filter: drop-shadow(0 20px 35px rgba(225, 48, 98, 0.45));
+}
+
+.logo-desc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 42px 40px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.logo-desc-card h3 {
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+.logo-desc-card p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #e2e8f0;
+    margin: 0;
+}
+
+/* ==========================================
+   SECTION VISI & MISI KABINET
+   ========================================== */
+.visi-misi-section {
+    max-width: 900px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.vm-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 44px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.vm-badge {
+    display: inline-block;
+    padding: 6px 28px;
+    border-radius: 30px;
+    border: 1.5px solid rgba(225, 48, 98, 0.4);
+    background: rgba(30, 41, 59, 0.7);
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.visi-card p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin: 0;
+}
+
+.misi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding-left: 24px;
+    margin: 0;
+    list-style-type: decimal;
+}
+
+.misi-list li {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #e2e8f0;
+    text-align: justify;
+}
+
+.misi-list li::marker {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+/* ==========================================
+   SECTION PENGURUS INTI HMGF UGM
+   ========================================== */
+.pengurus-inti-section {
+    max-width: 1280px;
+    margin: 0 auto 140px auto;
+    padding: 0 20px;
+}
+
+.pengurus-inti-section .stacked-title-header,
+.pengurus-inti-section .kepengurusan-header {
+    margin-bottom: 40px !important;
+}
+
+.pengurus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    align-items: flex-start;
+    position: relative;
+    margin-top: 20px;
+}
+
+.pengurus-card.pos-sekretaris { margin-top: 120px; }
+.pengurus-card.pos-ketua      { margin-top: 0; }
+.pengurus-card.pos-jendral    { margin-top: 60px; }
+.pengurus-card.pos-bendahara  { margin-top: 130px; }
+
+.pengurus-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 24px 20px 28px 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    cursor: pointer;
+}
+
+.pengurus-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(225, 48, 98, 0.5);
+    box-shadow: 0 25px 50px rgba(225, 48, 98, 0.2);
+}
+
+.pengurus-role {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #ffffff;
+    margin-top: 4px;
+    margin-bottom: 38px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.pengurus-img-box {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.pengurus-img-box img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.pengurus-card:hover .pengurus-img-box img {
+    transform: scale(1.05);
+}
+
+.pengurus-info {
+    width: 100%;
+    opacity: 0.85;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.pengurus-card:hover .pengurus-info {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+.pengurus-info.multi-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.person-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.pengurus-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.pengurus-subrole {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-dim);
+    margin: 0;
+}
+
+/* ==========================================
+   SECTION PENGURUS DEPARTEMEN
+   ========================================== */
+.departemen-section {
+    max-width: 1300px;
+    margin: 0 auto 120px auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.departemen-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.departemen-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.scroll-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.scroll-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+    background: rgba(225, 48, 98, 0.25);
+    border-color: var(--accent-blue);
+    transform: scale(1.08);
+}
+
+.departemen-scroll-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 15px 5px 30px 5px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.departemen-scroll-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.departemen-scroll-track::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.departemen-scroll-track::-webkit-scrollbar-thumb {
+    background: rgba(225, 48, 98, 0.4);
+    border-radius: 10px;
+}
+
+.dept-card {
+    flex: 0 0 calc(25% - 18px);
+    min-width: 270px;
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 24px 20px 30px 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dept-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(225, 48, 98, 0.4);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.dept-name {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.dept-img-box {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dept-img-box img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.dept-card:hover .dept-img-box img {
+    transform: scale(1.05);
+}
+
+.dept-members {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.member-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-style: normal;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.member-role {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-dim);
+    margin: 0;
+}
+
+/* ==========================================
+   PARALLAX SECTION
+   ========================================== */
+.parallax-section {
+    width: 100%;
+    height: 550px;
+    margin: 80px 0 100px 0;
+    background-attachment: fixed;
+    background-position: center 20%; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    box-shadow: inset 0 20px 30px rgba(8, 12, 22, 0.9), 
+                inset 0 -20px 30px rgba(8, 12, 22, 0.9);
+}
+
+.parallax-overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg, 
+        var(--bg-dark) 0%, 
+        rgba(8, 12, 22, 0.1) 30%, 
+        rgba(8, 12, 22, 0.1) 70%, 
+        var(--bg-dark) 100%
+    );
+    pointer-events: none;
+}
+
+/* ==========================================
+   SECTION SEJARAH / TIMELINE HMGF UGM
+   ========================================== */
+.sejarah-section {
+    max-width: 1200px;
+    margin: 140px auto 140px auto !important; 
+    padding: 0 20px;
+    position: relative;
+    clear: both;
+}
+
+.timeline-container {
+    position: relative;
+    padding-top: 80px !important; 
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.timeline-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    gap: 60px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: linear-gradient(90deg, #E13062 0%, #ff769c 40%, #ff9ebb 80%, #E13062 100%);
+    border-radius: 50px;
+    box-shadow: 0 0 25px rgba(225, 48, 98, 0.8), 0 0 10px rgba(255, 118, 156, 0.6);
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#timelineLine1 {
+    top: calc(26% - 5px);
+    transform: translateY(-50%) translateX(120%);
+    opacity: 0;
+}
+
+#timelineLine2 {
+    top: calc(74% - 5px);
+    transform: translateY(-50%) translateX(120%);
+    opacity: 0;
+}
+
+#timelineLine1.stage-active,
+#timelineLine2.stage-active {
+    transform: translateY(-50%) translateX(0%);
+    opacity: 1;
+}
+
+#timelineLine1.stage-exit,
+#timelineLine2.stage-exit {
+    transform: translateY(-50%) translateX(-120%);
+    opacity: 0;
+}
+
+.timeline-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 36px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.timeline-card:hover {
+    border-color: rgba(225, 48, 98, 0.4);
+    transform: translateY(-5px);
+}
+
+.timeline-card p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin: 0;
+    text-align: justify;
+    text-indent: 2rem;
+}
+
+.timeline-label {
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+.text-right { text-align: right; }
+.text-left  { text-align: left; }
+
+/* ==========================================
+   RESPONSIVE DESIGN (MOBILE / TABLET)
+   ========================================== */
+@media (max-width: 768px) {
+    /* 1. Judul Utama Diperbesar dan Diratakan ke Tengah */
+    .stacked-title,
+    .profil-title {
+        align-items: center;
+    }
+
+    .stacked-title .title-top,
+    .profil-title .title-top {
+        align-self: center !important;
+        text-align: center;
+        transform: translateX(0) !important;
+        font-size: 3.2rem !important; /* Diperbesar untuk layar mobile */
+        margin-bottom: 5px;
+    }
+
+    .stacked-title .title-bottom,
+    .profil-title .title-bottom {
+        align-self: center !important;
+        text-align: center;
+        transform: translateX(0) !important;
+        font-size: 4.2rem !important; /* Diperbesar untuk layar mobile */
+        margin-top: 0;
+    }
+
+    /* 2. Tata Letak Grid Menjadi 1 Kolom */
+    .profil-container,
+    .kabinet-container,
+    .logo-detail-container,
+    .logo-detail-container.reverse {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* 3. Penyesuaian Ukuran Logo */
+    .profil-logo-img,
+    .logo-oikos {
+        max-width: 250px;
+    }
+
+    /* 4. Section Visi & Misi */
+    .visi-misi-section {
+        padding: 0 15px;
+    }
+    
+    .vm-card {
+        padding: 24px;
+    }
+
+    /* 5. Pengurus Inti */
+    .pengurus-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .pengurus-card.pos-sekretaris,
+    .pengurus-card.pos-ketua,
+    .pengurus-card.pos-jendral,
+    .pengurus-card.pos-bendahara {
+        margin-top: 0 !important;
+    }
+
+    /* 6. Timeline / Sejarah: Urutan Ditukar Agar Judul Titik Ikat Selalu di Atas Isi */
+    .timeline-row {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .timeline-label {
+        order: 1; /* Selalu tampil di atas / sebelum teks isi */
+        text-align: center !important;
+        font-size: 2rem;
+    }
+    
+    .timeline-card {
+        order: 2; /* Tampil di bawah label */
+    }
+
+    .timeline-label.text-right,
+    .timeline-label.text-left {
+        text-align: center;
+    }
+    
+    .timeline-line {
+        display: none; /* Sembunyikan garis animasi horizontal pada tampilan seluler */
+    }
+    
+    .timeline-container {
+        gap: 60px;
+    }
+    
+    .timeline-card p {
+        text-indent: 0;
+    }
+}
+
+/* Penyesuaian khusus HP berlayar kecil (misal: iPhone SE / Android standar) */
+@media (max-width: 480px) {
+    .pengurus-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stacked-title .title-top,
+    .profil-title .title-top {
+        font-size: 2.8rem !important; /* Diperbesar optimal untuk layar HP */
+    }
+
+    .stacked-title .title-bottom,
+    .profil-title .title-bottom {
+        font-size: 3.5rem !important; /* Diperbesar optimal untuk layar HP */
+    }
+}

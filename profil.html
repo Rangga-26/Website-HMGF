@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil & Sejarah - HMGF UGM</title>
+
+    <!-- Salin dan tempel baris di bawah ini untuk favicon -->
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+    
+    <!-- Import Font Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PANGGIL CSS BACKGROUND ACAK -->
+    <link rel="stylesheet" href="css/background.css">
+
+    <!-- CSS Navbar, Footer, Utama & Khusus Profil -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profil.css">
+
+    <!-- CSS UNTUK MENGHILANGKAN SCROLLBAR & GARIS PINGGIR SECARA TOTAL -->
+    <style>
+        /* Hilangkan margin & padding bawaan body yang bisa memicu garis/frame */
+        html, body {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            -ms-overflow-style: none !important;  /* IE and Edge */
+            scrollbar-width: none !important;  /* Firefox */
+        }
+
+        /* Terapkan penghilangan scrollbar & border ke seluruh elemen secara universal */
+        *, *::before, *::after {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+
+        /* Sembunyikan scrollbar Webkit (Chrome, Safari, Edge, Opera) beserta track & thumb-nya */
+        ::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        ::-webkit-scrollbar-track,
+        *::-webkit-scrollbar-track,
+        ::-webkit-scrollbar-thumb,
+        *::-webkit-scrollbar-thumb {
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTAINER BACKGROUND ACAK (Diisi otomatis oleh JS di sepanjang tinggi scroll) -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Container Navbar (Fixed) -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header / Judul Halaman Profil -->
+    <header class="profil-header">
+        <h1 class="profil-title">
+            <span class="title-top">Profil</span>
+            <span class="title-bottom">HMGF UGM</span>
+        </h1>
+    </header>
+
+    <!-- MAIN DI-BERI POSITION RELATIVE & Z-INDEX AGAR KONTEN DI ATAS BACKGROUND -->
+    <main style="position: relative; z-index: 1;">
+        <!-- Section Utama Profil HMGF -->
+        <section class="profil-container">
+            <!-- Sisi Kiri: Logo HMGF UGM -->
+            <div class="profil-logo-wrapper">
+                <img src="assets/logo_HMGF.png" alt="Logo Resmi HMGF UGM" class="profil-logo-img">
+            </div>
+
+            <!-- Sisi Kanan: Kartu Berisi Foto & Teks Profil -->
+            <div class="profil-card">
+                <div class="profil-img-wrapper">
+                    <img src="assets/profil.png" alt="Dokumentasi Anggota HMGF UGM" class="profil-main-img">
+                </div>
+                <p class="profil-desc">
+                    <strong>HMGF</strong> merupakan singkatan dari Himpunan Mahasiswa Geofisika yang berkedudukan di program studi Geofisika, Universitas Gadjah Mada. Himpunan ini berfungsi sebagai wadah bagi mahasiswa Geofisika untuk berkolaborasi dalam mempelajari, meneliti, dan mengkaji berbagai fenomena dinamika kebumian. Dalam menjalankan perannya, HMGF dilandasi oleh integritas dan iktikad baik guna mencapai tujuan mulia yang sejalan dengan Tri Dharma Perguruan Tinggi.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Foto Parallax Natural (assets/jadul.png) Sebelum Sejarah -->
+        <section class="parallax-section" style="background-image: url('assets/jadul.png');">
+            <div class="parallax-overlay"></div>
+        </section>
+
+        <!-- Section Sejarah HMGF UGM -->
+        <section class="sejarah-section" id="sejarahSection">
+            
+            <!-- Judul Bertumpuk (Reusable Stacked Title) -->
+            <div class="header-section">
+                <div class="stacked-title">
+                    <span class="title-top">Sejarah</span>
+                    <span class="title-bottom">HMGF UGM</span>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Baris 1: Titik Ikat Pertama -->
+                <div class="timeline-row" id="rowGroup1">
+                    <div class="timeline-label text-right">
+                        TITIK IKAT<br>PERTAMA
+                    </div>
+                    <div class="timeline-card">
+                        <p>
+                            Berawal dari banyak masalah yang terjadi, maka pada tahun 1988 dalam kegiatan Studi Lapangan mahasiswa Geofisika angkatan 1987, 1986, 1985 dan sebelumnya, muncullah pemikiran perlunya sebuah himpunan mahasiswa untuk mengatasi berbagai permasalahan yang sering terjadi.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- GARIS 1: Sekarang duduk tepat di tengah antara Baris 1 & 2 -->
+                <div class="timeline-line" id="timelineLine1"></div>
+
+                <!-- Baris 2: Titik Ikat Ke-Dua -->
+                <div class="timeline-row" id="rowGroup1End">
+                    <div class="timeline-card">
+                        <p>
+                            Pada tahun 1990, mahasiswa Geofisika mengadakan pertemuan yang diikuti oleh mahasiswa angkatan 1987, 1988, 1989, dan 1990. Dalam pertemuan ini mereka bersepakat untuk membentuk HMGF. Pengurus HMGF pun dibentuk, begitu juga dengan program kerja.
+                        </p>
+                    </div>
+                    <div class="timeline-label text-left">
+                        TITIK IKAT<br>KE-DUA
+                    </div>
+                </div>
+
+                <!-- Baris 3: Titik Ikat Ke-Tiga -->
+                <div class="timeline-row" id="rowGroup2">
+                    <div class="timeline-label text-right">
+                        TITIK IKAT<br>KE-TIGA
+                    </div>
+                    <div class="timeline-card">
+                        <p>
+                            Meskipun sempat vakum dan dinamika organisasi terus berkembang, semangat para anggota Geofisika tetap membara untuk terus menyatukan persepsi. Kegiatan keakraban dan ruang diskusi intensif terus dibangun antar-angkatan guna merancang struktur organisasi yang lebih kokoh.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- GARIS 2: Sekarang duduk tepat di tengah antara Baris 3 & 4 -->
+                <div class="timeline-line" id="timelineLine2"></div>
+
+                <!-- Baris 4: Titik Ikat Ke-Empat -->
+                <div class="timeline-row" id="rowGroup2End">
+                    <div class="timeline-card">
+                        <p>
+                            Berdasarkan Musyawarah Mahasiswa Geofisika UGM pada hari Sabtu, 11 Desember 1993 yang berisi mahasiswa angkatan 1988, 1990, 1991, 1992, dan 1993, maka Alhamdulillah, setelah melalui perjalanan panjang selama kurang lebih 5 tahun, akhirnya terbentuklah Himpunan Mahasiswa Geofisika UGM secara utuh, lengkap dengan AD/ART, Pengurus HMGF, Program Kerja dan fans/pendukung.
+                        </p>
+                    </div>
+                    <div class="timeline-label text-left">
+                        TITIK IKAT<br>KE-EMPAT
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Container Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script Navbar & Route Handler -->
+    <script src="js/navbar.js"></script>
+
+    <!-- Script Component Loader, Active Link Highlighter, & Logika Animasi Scroll Smooth -->
+    <script>
+        // Fetch Navbar & Footer dengan Highlighter & Inisialisasi Navbar Scroll
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveMenu();
+
+                if (typeof initNavbarScroll === 'function') {
+                    initNavbarScroll();
+                }
+            })
+            .catch(err => console.error('Gagal memuat navbar:', err));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+            .catch(err => console.error('Gagal memuat footer:', err));
+
+        // Highlight Menu Aktif di Navbar (untuk menu Profil)
+        function highlightActiveMenu() {
+            document.querySelectorAll('.navbar-wrapper .active').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            const profilLink = document.querySelector('.dropdown-menu a[href*="profil.html"]');
+            
+            if (profilLink) {
+                profilLink.classList.add('active');
+                const parentNavItem = profilLink.closest('.nav-item');
+                if (parentNavItem) {
+                    const parentLink = parentNavItem.querySelector('.nav-link');
+                    if (parentLink) {
+                        parentLink.classList.add('active');
+                    }
+                }
+            }
+        }
+
+        // Controller Animasi Scroll Garis Cahaya Sejarah
+        document.addEventListener("DOMContentLoaded", function() {
+            const line1 = document.getElementById('timelineLine1');
+            const line2 = document.getElementById('timelineLine2');
+            const rowGroup1 = document.getElementById('rowGroup1');
+            const rowGroup2 = document.getElementById('rowGroup2');
+            const rowGroup2End = document.getElementById('rowGroup2End');
+
+            function handleSmoothScrollAnimation() {
+                if (!line1 || !line2 || !rowGroup1 || !rowGroup2 || !rowGroup2End) return;
+
+                const triggerPoint = window.innerHeight * 0.65;
+                const exitPoint = window.innerHeight * 0.25;
+
+                const rectGroup1 = rowGroup1.getBoundingClientRect();
+                const rectGroup2 = rowGroup2.getBoundingClientRect();
+                const rectGroup2End = rowGroup2End.getBoundingClientRect();
+
+                // 1. Logika Garis Pertama (Titik Ikat 1 & 2)
+                if (rectGroup1.top < triggerPoint && rectGroup2.top >= triggerPoint) {
+                    line1.classList.add('stage-active');
+                    line1.classList.remove('stage-exit');
+                } else if (rectGroup2.top < triggerPoint) {
+                    line1.classList.remove('stage-active');
+                    line1.classList.add('stage-exit');
+                } else {
+                    line1.classList.remove('stage-active', 'stage-exit');
+                }
+
+                // 2. Logika Garis Kedua (Titik Ikat 3 & 4)
+                if (rectGroup2.top < triggerPoint && rectGroup2End.bottom > exitPoint) {
+                    line2.classList.add('stage-active');
+                    line2.classList.remove('stage-exit');
+                } else if (rectGroup2End.bottom <= exitPoint) {
+                    line2.classList.remove('stage-active');
+                    line2.classList.add('stage-exit');
+                } else {
+                    line2.classList.remove('stage-active', 'stage-exit');
+                }
+            }
+
+            window.addEventListener('scroll', handleSmoothScrollAnimation);
+            handleSmoothScrollAnimation();
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/seismic-cursor.js"></script>
+
+    <!-- PANGGIL JS BACKGROUND ACAK -->
+    <script src="js/background.js"></script>
+</body>
+</html>

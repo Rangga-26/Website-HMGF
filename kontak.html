@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - HMGF UGM</title>
+
+    <!-- Salin dan tempel baris di bawah ini untuk favicon -->
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Menghubungkan ke CSS Ekosistem Global (Diperlukan untuk Navbar & Footer) -->
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Menghubungkan ke CSS baru khusus Halaman Kontak -->
+    <link rel="stylesheet" href="css/kontak.css">
+
+    <style>
+        /* Gaya tambahan khusus halaman kontak untuk menyesuaikan ikon monochrome */
+        .contact-info-box i { color: #0f172a !important; }
+        .btn-submit-contact i { color: #ffffff !important; }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-info-box {
+            background: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        .contact-item h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Gaya Khusus untuk Google Maps Container */
+        .map-wrapper {
+            margin-top: 40px;
+            background: rgba(248, 250, 252, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        
+        .map-wrapper h4 {
+            margin: 0 0 16px 0;
+            font-size: 1.1rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .map-container { height: 300px; }
+        }
+    </style>
+</head>
+<body class="page-berita-detail">
+
+    <!-- Kontainer Latar Belakang -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Placeholder Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <main style="position: relative; z-index: 1;">
+        
+        <!-- Bagian Hero Header dengan Background Kustom -->
+        <header class="berita-hero" id="heroHeader" style="background-image: url('assets/pengurus_2627.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            <div class="berita-hero-overlay"></div>
+            <div class="berita-hero-title-container">
+                <h1 class="berita-hero-title">Hubungi Kami</h1>
+                <div class="berita-hero-author">Sampaikan pertanyaan, kritik, maupun saran Anda</div>
+            </div>
+        </header>
+
+        <div class="berita-content-container">
+            <div class="contact-grid">
+                <!-- Informasi Kontak -->
+                <div class="contact-info-box">
+                    <h3 style="margin-top: 0; color: #0f172a;">Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Alamat Fakultas</h4>
+                            <p>Bulaksumur Jl. Geografi, Sendowo, Sinduadi, Kec. Mlati, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hmgf@ugm.ac.id</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-instagram"></i>
+                        <div>
+                            <h4>Sosial Media</h4>
+                            <p>@hmgf_ugm</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Kontak -->
+                <div class="comment-form-wrapper">
+                    <h4 class="comment-form-title">Kirim Pesan Langsung</h4>
+                    <form class="comment-form" id="contactForm" onsubmit="submitContact(event)">
+                        <div class="form-group-row">
+                            <input type="text" id="contactName" placeholder="Nama Lengkap*" required>
+                            <input type="email" id="contactEmail" placeholder="Alamat Email*" required>
+                        </div>
+                        <input type="text" id="contactSubject" placeholder="Subjek Pesan*" required>
+                        <textarea id="contactText" rows="6" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        <button type="submit" class="btn-submit-comment btn-submit-contact" id="btnSubmitContact">
+                            <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bagian Google Maps -->
+            <div class="map-wrapper">
+                <h4><i class="fa-solid fa-map-location-dot"></i> Peta Lokasi Fakultas</h4>
+                <div class="map-container">
+                    <!-- Iframe Google Maps (Titik FMIPA UGM) -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0874558087957!2d110.37365691079361!3d-7.769910477067883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a584a56c497fd%3A0xc6b677a836da8055!2sDepartemen%20Fisika%20FMIPA%20UGM!5e0!3m2!1sid!2sid!4v1716300000000!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Placeholder Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Menghubungkan File JS Bawaan Ekosistem Web -->
+    <script src="js/navbar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/seismic-cursor.js"></script>
+
+    <!-- SCRIPT OVERRIDE UNTUK MEMANGGIL NAVBAR & FOOTER SERTA INTEGRASI FORM -->
+    <script>
+        // 1. Fungsi khusus untuk menjamin Active menu pada Navbar tereksekusi dengan benar
+        function highlightActiveMenu() {
+            const navbar = document.getElementById('navbar-placeholder');
+            if (!navbar) return;
+
+            // Bersihkan semua class active yang mungkin tersisa
+            navbar.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+
+            // Deteksi agresif untuk link kontak
+            const navLinks = navbar.querySelectorAll('a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && (href.toLowerCase().includes('kontak'))) {
+                    link.classList.add('active'); 
+                    
+                    // Jika link ini berada di dalam dropdown/submenu, aktifkan juga menu induknya
+                    const parentNavItem = link.closest('.nav-item');
+                    if (parentNavItem) {
+                        const parentLink = parentNavItem.querySelector('.nav-link');
+                        if (parentLink) parentLink.classList.add('active'); 
+                    }
+                }
+            });
+        }
+
+        // 2. Mencegah bentrok load ganda dari JS eksternal, memastikan highlightActiveMenu terpanggil
+        window.fetchNavbarAndFooter = function() {
+            const navPlaceholder = document.getElementById('navbar-placeholder');
+            const footPlaceholder = document.getElementById('footer-placeholder');
+
+            if (navPlaceholder) {
+                fetch('navbar.html', { mode: 'cors' })
+                    .then(res => res.ok ? res.text() : Promise.reject(res.status))
+                    .then(data => {
+                        navPlaceholder.innerHTML = data;
+                        highlightActiveMenu(); // Panggil fungsi highlight setelah navbar ter-render
+                        if (typeof initNavbarScroll === 'function') initNavbarScroll();
+                    }).catch(err => console.warn('Navbar tidak dimuat:', err));
+            }
+
+            if (footPlaceholder) {
+                fetch('footer.html', { mode: 'cors' })
+                    .then(res => res.ok ? res.text() : Promise.reject(res.status))
+                    .then(data => { footPlaceholder.innerHTML = data; })
+                    .catch(err => console.warn('Footer tidak dimuat:', err));
+            }
+        };
+
+        // 3. Fungsi untuk mengirim pesan kontak ke SheetDB (Spreadsheet)
+        async function submitContact(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('btnSubmitContact');
+            const nameEl = document.getElementById('contactName').value.trim();
+            const emailEl = document.getElementById('contactEmail').value.trim();
+            const subjectEl = document.getElementById('contactSubject').value.trim();
+            const textEl = document.getElementById('contactText').value.trim();
+
+            if (!nameEl || !textEl || !emailEl || !subjectEl) return;
+
+            // Simpan state awal tombol dan ubah menjadi status loading
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 8px;"></i> Mengirim...';
+            btn.disabled = true;
+
+            // Endpoint URL SheetDB
+            const BASE_URL = "https://sheetdb.io/api/v1/h8t8pf39u16ad";
+            const SHEET_NAME = "Comments";
+
+            // Format payload dibungkus dengan `data` sesuai standarisasi SheetDB JSON Payload
+            const payload = {
+                data: [{
+                    id: "CONTACT_FORM",
+                    judul_berita: subjectEl,
+                    name: nameEl,
+                    email: emailEl,
+                    text: textEl,
+                    date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' })
+                }]
+            };
+
+            try {
+                // PERBAIKAN: Gunakan format SheetDB `?sheet=NamaSheet` alih-alih `URL/NamaSheet`
+                const response = await fetch(`${BASE_URL}?sheet=${encodeURIComponent(SHEET_NAME)}`, {
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+
+                alert("Pesan Anda berhasil terkirim! Terima kasih telah menghubungi kami.");
+                document.getElementById('contactForm').reset();
+            } catch (error) {
+                console.error("Gagal mengirim pesan kontak:", error);
+                alert("Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba beberapa saat lagi.");
+            } finally {
+                // Kembalikan tombol ke bentuk semula
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            }
+        }
+
+        // 4. Panggil saat DOM sepenuhnya dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            if(typeof window.fetchNavbarAndFooter === 'function') {
+                window.fetchNavbarAndFooter();
+            }
+        });
+    </script>
+</body>
+</html>

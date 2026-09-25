@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolibrary - HMGF UGM</title>
+
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <!-- Import Font Roboto & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PANGGIL CSS BACKGROUND ACAK -->
+    <link rel="stylesheet" href="css/background.css">
+
+    <!-- CSS Navbar, Footer, Utama & Khusus Geo-Insight -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/geo-insight.css">
+</head>
+<body class="page-geolibrary page-geofisiana">
+
+    <!-- CONTAINER BACKGROUND ACAK -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Container Navbar (Fixed) -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header Section -->
+    <header class="geo-header-natural" style="position: relative; z-index: 1;">
+        <div class="header-container">
+            <h1 class="seg-title geofisiana-title" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.06em !important;">GEOLIBRARY</h1>
+            <p class="seg-subtitle">Arsip video tutorial, materi perkuliahan, dan bank soal Geofisika UGM</p>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main class="geo-main-grid" style="position: relative; z-index: 1;">
+        <!-- Kolom Utama: Feed Berita / Arsip -->
+        <section>
+            <div class="news-feed" id="newsFeed">
+                <!-- Skeleton Loader -->
+                <div class="skeleton-feed" style="text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; color: #000000;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: #000000;"></i>
+                    <p style="margin-top: 12px; font-weight: 500;">Memuat & Menganalisis Geolibrary...</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Halaman / Pagination Dinamis -->
+            <div class="geo-pagination" id="paginationContainer" style="display: none;"></div>
+        </section>
+
+        <!-- Sidebar Kanan -->
+        <aside>
+            <!-- Widget Mesin Pencari Judul / Mata Kuliah -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Cari Berkas / Mata Kuliah</span>
+                </div>
+                <div class="search-box-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Ketik kata kunci atau mata kuliah..." onkeyup="handleSearchInput(event)">
+                    <button id="searchBtn" class="search-icon-btn" onclick="clearSearchInput()">
+                        <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Widget Kategori Lainnya -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Kategori lainnya</span>
+                </div>
+                <ul class="natural-cat-list">
+                    <li><a href="seputar-hmgf.html">Seputar HMGF <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="seg-news.html">SEG News <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="metode-geofisika.html">Metode Geofisika <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="majalah-spektral.html">Majalah Spektral <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geofisiana.html">Geofisiana <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geolibrary.html" class="active">Geolibrary <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="penelitian.html">Penelitian <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Widget Filter Jenis Konten -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Jenis Konten</span>
+                </div>
+                <div class="metode-tags-container" id="contentTypeTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByContentType('ALL')"><i class="fa-solid fa-border-all" style="font-size: 0.75rem; margin-right: 4px;"></i> SEMUA KONTEN</span>
+                    <span class="natural-year-tag" onclick="filterByContentType('Materi Kuliah')"><i class="fa-solid fa-book-open" style="font-size: 0.75rem; margin-right: 4px;"></i> MATERI KULIAH</span>
+                    <span class="natural-year-tag" onclick="filterByContentType('Bank Soal')"><i class="fa-solid fa-file-pen" style="font-size: 0.75rem; margin-right: 4px;"></i> BANK SOAL</span>
+                    <span class="natural-year-tag" onclick="filterByContentType('Video Tutorial')"><i class="fa-solid fa-video" style="font-size: 0.75rem; margin-right: 4px;"></i> VIDEO TUTORIAL</span>
+                </div>
+            </div>
+
+            <!-- Widget Filter Kategori Ujian -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Kategori Ujian</span>
+                </div>
+                <div class="metode-tags-container" id="examTypeTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByExamType('ALL')"><i class="fa-solid fa-layer-group" style="font-size: 0.75rem; margin-right: 4px;"></i> SEMUA UJIAN</span>
+                    <span class="natural-year-tag" onclick="filterByExamType('UAS')"><i class="fa-solid fa-file-signature" style="font-size: 0.75rem; margin-right: 4px;"></i> UAS</span>
+                    <span class="natural-year-tag" onclick="filterByExamType('UTS')"><i class="fa-solid fa-file-lines" style="font-size: 0.75rem; margin-right: 4px;"></i> UTS</span>
+                    <span class="natural-year-tag" onclick="filterByExamType('Kuis / Lainnya')"><i class="fa-solid fa-list-check" style="font-size: 0.75rem; margin-right: 4px;"></i> KUIS / LAINNYA</span>
+                </div>
+            </div>
+
+            <!-- Widget Filter Semester -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Semester</span>
+                </div>
+                <div class="natural-year-grid" id="semesterTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterBySemester('ALL')">Semua Semester</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 1')">Semester 1</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 2')">Semester 2</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 3')">Semester 3</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 4')">Semester 4</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 5')">Semester 5</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 6')">Semester 6</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 7')">Semester 7</span>
+                    <span class="natural-year-tag" onclick="filterBySemester('Semester 8')">Semester 8</span>
+                </div>
+            </div>
+
+            <!-- Widget Filter Sifat Mata Kuliah -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Sifat Mata Kuliah</span>
+                </div>
+                <div class="metode-tags-container" id="courseTypeTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByCourseType('ALL')">Semua Sifat</span>
+                    <span class="natural-year-tag" onclick="filterByCourseType('Mata Kuliah Wajib')">Mata Kuliah Wajib</span>
+                    <span class="natural-year-tag" onclick="filterByCourseType('Mata Kuliah Pilihan')">Mata Kuliah Pilihan</span>
+                </div>
+            </div>
+
+            <!-- Widget Filter Tahun Arsip -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Tahun Arsip</span>
+                </div>
+                <div class="natural-year-grid" id="yearTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByYear('ALL')">Semua Tahun</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Container Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script Navbar & Route Handler -->
+    <script src="js/navbar.js"></script>
+    
+    <!-- Panggil insight.js yang sudah memuat fungsi fetch data, API URL, normalisasi dll -->
+    <script src="js/insight.js"></script>
+
+    <!-- LOGIKA KHUSUS GEOLIBRARY -->
+    <script>
+        // Variabel Status Geolibrary
+        const ITEMS_PER_PAGE = 5;
+        let allGeolibraryArticles = [];
+        let activeFilteredArticles = [];
+        
+        let selectedContentType = 'ALL';
+        let selectedExamType = 'ALL';
+        let selectedSemester = 'ALL';
+        let selectedCourseType = 'ALL';
+        let selectedYear = 'ALL';
+        let searchQuery = '';
+        let currentPage = 1;
+
+        // Memuat Navbar & Footer Secara Dinamis
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveMenu();
+                if (typeof initNavbarScroll === 'function') initNavbarScroll();
+            })
+            .catch(err => console.error('Gagal memuat navbar:', err));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+            .catch(err => console.error('Gagal memuat footer:', err));
+
+        function highlightActiveMenu() {
+            const navbar = document.getElementById('navbar-placeholder');
+            if (!navbar) return;
+            navbar.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+            const geolibraryLink = navbar.querySelector('a[href*="geolibrary.html"]');
+            
+            if (geolibraryLink) {
+                geolibraryLink.classList.add('active');
+                const parentNavItem = geolibraryLink.closest('.nav-item');
+                if (parentNavItem) {
+                    const parentLink = parentNavItem.querySelector('.nav-link');
+                    if (parentLink) parentLink.classList.add('active');
+                }
+            }
+        }
+
+        // ==========================================================================
+        // LOGIKA KHUSUS GEOLIBRARY
+        // ==========================================================================
+        async function loadGeolibraryArticles() {
+            const feedContainer = document.getElementById('newsFeed');
+            try {
+                const rawArticles = await fetchSheetData(SHEET_GEOLIBRARY);
+
+                if (!Array.isArray(rawArticles)) {
+                    throw new Error("Data yang diterima bukan array.");
+                }
+
+                // 1. Normalisasi data terlebih dahulu dengan getCell()
+                // 2. Filter artikel yang published
+                allGeolibraryArticles = rawArticles
+                    .filter(article => article && isPublished(getPublishedValue(article)))
+                    .map(article => normalizeArticleData(article, SHEET_GEOLIBRARY))
+                    .filter(Boolean)
+                    .map(normalized => {
+                        const yearMatch = (normalized.tanggal || '').match(/\b(20\d{2}|19\d{2})\b/);
+                        const parsedYear = yearMatch ? yearMatch[0] : '';
+
+                        return {
+                            ...normalized,
+                            gambar_hero: formatDriveUrl(normalized.gambar_hero),
+                            tahun: normalized.tahunArsip ? String(normalized.tahunArsip) : parsedYear
+                        };
+                    });
+
+                renderYearTags();
+                applyFilters();
+
+            } catch (error) {
+                console.error("Gagal memuat arsip Geolibrary:", error);
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #fee2e2; color: #ef4444;">
+                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                            <p style="margin-top: 10px; font-weight: 500;">Gagal memuat arsip Geolibrary. Silakan coba beberapa saat lagi.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Handlers Sidebar Filter
+        function handleSearchInput(event) {
+            searchQuery = normalizeTitle(event.target.value);
+            const iconEl = document.getElementById('searchIcon');
+            const btnEl = document.getElementById('searchBtn');
+
+            if (searchQuery.length > 0) {
+                if (iconEl) iconEl.className = "fa-solid fa-xmark";
+                if (btnEl) { btnEl.classList.add("search-clear-btn"); btnEl.classList.remove("search-icon-btn"); }
+            } else {
+                if (iconEl) iconEl.className = "fa-solid fa-magnifying-glass";
+                if (btnEl) { btnEl.classList.add("search-icon-btn"); btnEl.classList.remove("search-clear-btn"); }
+            }
+            applyFilters();
+        }
+
+        function clearSearchInput() {
+            const inputEl = document.getElementById('searchInput');
+            if (inputEl && inputEl.value !== '') {
+                inputEl.value = '';
+                searchQuery = '';
+                handleSearchInput({ target: inputEl });
+            }
+        }
+
+        function renderYearTags() {
+            const container = document.getElementById('yearTagsContainer');
+            if (!container) return;
+
+            container.innerHTML = '<span class="natural-year-tag active" onclick="filterByYear(\'ALL\')">Semua Tahun</span>';
+            const years = [...new Set(allGeolibraryArticles.map(a => a.tahun).filter(Boolean))].sort((a, b) => b - a);
+
+            years.forEach(year => {
+                const tag = document.createElement('span');
+                tag.className = 'natural-year-tag';
+                tag.innerText = year;
+                tag.onclick = () => filterByYear(year);
+                container.appendChild(tag);
+            });
+        }
+
+        function filterByContentType(type) {
+            selectedContentType = type;
+            const tags = document.querySelectorAll('#contentTypeTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                const tagText = tag.innerText.replace(/[\r\n\t]/g, '').trim();
+                if ((type === 'ALL' && tagText.includes('SEMUA KONTEN')) || tagText.includes(type.toUpperCase())) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyFilters();
+        }
+
+        function filterByExamType(exam) {
+            selectedExamType = exam;
+            const tags = document.querySelectorAll('#examTypeTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                const tagText = tag.innerText.replace(/[\r\n\t]/g, '').trim();
+                if ((exam === 'ALL' && tagText.includes('SEMUA UJIAN')) || tagText.includes(exam.toUpperCase())) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyFilters();
+        }
+
+        function filterBySemester(sem) {
+            selectedSemester = sem;
+            const tags = document.querySelectorAll('#semesterTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                if ((sem === 'ALL' && tag.innerText.trim() === 'Semua Semester') || tag.innerText.trim() === sem) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyFilters();
+        }
+
+        function filterByCourseType(type) {
+            selectedCourseType = type;
+            const tags = document.querySelectorAll('#courseTypeTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                if ((type === 'ALL' && tag.innerText.trim() === 'Semua Sifat') || tag.innerText.trim() === type) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyFilters();
+        }
+
+        function filterByYear(year) {
+            selectedYear = year;
+            const tags = document.querySelectorAll('#yearTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                if (tag.innerText.trim() === String(year) || (year === 'ALL' && tag.innerText.trim() === 'Semua Tahun')) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyFilters();
+        }
+
+        function applyFilters() {
+            activeFilteredArticles = allGeolibraryArticles.filter(item => {
+                if (!item) return false;
+                const normJudul = normalizeTitle(item.judul);
+                const normMK = normalizeTitle(item.mataKuliah);
+                const normPenulis = normalizeTitle(item.penulis);
+
+                const matchSearch = !searchQuery || normJudul.includes(searchQuery) || normMK.includes(searchQuery) || normPenulis.includes(searchQuery);
+                
+                const itemJenis = (item.jenisKonten || '').toLowerCase();
+                const matchContentType = (selectedContentType === 'ALL') || (itemJenis === selectedContentType.toLowerCase());
+                
+                let matchExamType = true;
+                if (selectedExamType !== 'ALL') {
+                    const itemExam = (item.kategoriUjian || '').toLowerCase();
+                    const targetExam = selectedExamType.toLowerCase();
+                    if (targetExam.includes('kuis') || targetExam.includes('lainnya')) {
+                        matchExamType = itemExam.includes('kuis') || itemExam.includes('lainnya') || (!itemExam.includes('uas') && !itemExam.includes('uts'));
+                    } else {
+                        matchExamType = itemExam.includes(targetExam);
+                    }
+                }
+
+                const itemSemester = (item.semester || '').toLowerCase();
+                const matchSemester = (selectedSemester === 'ALL') || (itemSemester === selectedSemester.toLowerCase());
+
+                const itemSifat = (item.sifatMK || '').toLowerCase();
+                const matchCourseType = (selectedCourseType === 'ALL') || (itemSifat === selectedCourseType.toLowerCase());
+
+                const matchYear = (selectedYear === 'ALL') || (String(item.tahun) === String(selectedYear));
+
+                return matchSearch && matchContentType && matchExamType && matchSemester && matchCourseType && matchYear;
+            });
+
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+
+            if (activeFilteredArticles.length === 0) {
+                feedContainer.innerHTML = `
+                    <div style="text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.8); border-radius: 18px; border: 1px dashed #000000; color: #000000;">
+                        <i class="fa-solid fa-folder-open" style="font-size: 2.2rem; margin-bottom: 12px; color: #000000;"></i>
+                        <h3 style="font-size: 1.05rem; font-weight: 700; color: #000000; margin: 0;">Materi / Soal Tidak Ditemukan</h3>
+                        <p style="font-size: 0.88rem; margin-top: 4px;">Tidak ada berkas yang cocok dengan filter yang Anda pilih.</p>
+                    </div>
+                `;
+                const paginationContainer = document.getElementById('paginationContainer');
+                if (paginationContainer) paginationContainer.style.display = 'none';
+                return;
+            }
+
+            renderPage(1);
+            setupPagination();
+        }
+
+        function renderPage(pageNumber) {
+            currentPage = pageNumber;
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+            feedContainer.innerHTML = '';
+
+            const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+            const pageArticles = activeFilteredArticles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+            pageArticles.forEach(item => {
+                let badgesHtml = '';
+                const badgeStyleBlack = `background: #000000; color: #ffffff; font-weight: 700; border: 1px solid #000000; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase;`;
+                const badgeStyleWhite = `background: #ffffff; color: #000000; font-weight: 700; border: 1px solid #000000; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase;`;
+
+                if (item.jenisKonten) {
+                    let icon = 'fa-file-lines';
+                    if (item.jenisKonten.toLowerCase().includes('video')) icon = 'fa-video';
+                    if (item.jenisKonten.toLowerCase().includes('materi')) icon = 'fa-book-open';
+                    if (item.jenisKonten.toLowerCase().includes('soal')) icon = 'fa-file-pen';
+                    badgesHtml += `<span class="metode-badge" style="${badgeStyleBlack}"><i class="fa-solid ${icon}" style="font-size: 0.65rem; margin-right: 4px;"></i> ${item.jenisKonten}</span>`;
+                }
+
+                if (item.kategoriUjian) badgesHtml += `<span class="metode-badge" style="${badgeStyleBlack}"><i class="fa-solid fa-pen-to-square" style="font-size: 0.65rem; margin-right: 4px;"></i> ${item.kategoriUjian}</span>`;
+                if (item.semester) badgesHtml += `<span class="metode-badge" style="${badgeStyleWhite}"><i class="fa-solid fa-graduation-cap" style="font-size: 0.65rem; margin-right: 4px;"></i> ${item.semester}</span>`;
+                if (item.sifatMK) badgesHtml += `<span class="metode-badge" style="${badgeStyleWhite}"><i class="fa-solid fa-bookmark" style="font-size: 0.65rem; margin-right: 4px;"></i> ${item.sifatMK}</span>`;
+
+                const detailUrl = `berita-insight.html?judul=${encodeURIComponent(item.judul)}`;
+
+                feedContainer.innerHTML += `
+                    <article class="news-item geo-card">
+                        <h2 class="news-item-title">${item.judul || 'Tanpa Judul'}</h2>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-calendar-days"></i> ${item.tanggal || '-'}</span>
+                            <span class="news-meta-divider">•</span>
+                            <span><i class="fa-solid fa-book"></i> ${item.mataKuliah || item.kategoriUtama}</span>
+                            <span class="news-meta-divider">•</span>
+                            <span><i class="fa-solid fa-user"></i> ${item.penulis}</span>
+                        </div>
+                        <div style="margin-top: 6px; margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            ${badgesHtml}
+                        </div>
+                        <div class="news-image-wrapper">
+                            <img src="${item.gambar_hero}" alt="${item.judul}" class="news-image" onerror="this.onerror=null;this.src='assets/SEG_News/pantai.png';">
+                        </div>
+                        <div class="btn-selengkapnya-container" style="margin-top: 16px;">
+                            <a href="${detailUrl}" class="btn-geo-natural">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            });
+
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+
+        function setupPagination() {
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (!paginationContainer) return;
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(activeFilteredArticles.length / ITEMS_PER_PAGE);
+            if (totalPages <= 1) {
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            paginationContainer.style.display = 'flex';
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `geo-page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    renderPage(i);
+                    updateActiveBtn(i);
+                };
+                paginationContainer.appendChild(btn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'geo-page-btn';
+            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    renderPage(currentPage + 1);
+                    updateActiveBtn(currentPage);
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function updateActiveBtn(activePage) {
+            const buttons = document.querySelectorAll('.geo-page-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx + 1 === activePage) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Karena dipanggil di sini, pastikan insight.js selesai diload
+            loadGeolibraryArticles();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMGF UGM - Himpunan Mahasiswa Geofisika UGM</title>
+
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,700;0,800;0,900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/timeline.css">
+
+    <!-- STYLING MAIN & GLASSMORPHISM -->
+    <style>
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #navbar-placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-wrapper {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-hidden, .navbar-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            height: 100vh;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .persistent-hero-title {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            pointer-events: none; z-index: 10;
+            display: flex; align-items: center; box-sizing: border-box;
+        }
+
+        .persistent-hero-title .left-overlay {
+            pointer-events: auto; padding-left: 4%; width: max-content;
+        }
+
+        .hero-title-group { margin-bottom: 30px; }
+
+        .title-sub-top {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; font-style: italic; font-weight: 600;
+            color: #E0E0E0; letter-spacing: 1px; display: block;
+            margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        .title-main {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem; font-weight: 900; color: #FFFFFF;
+            letter-spacing: 15px; margin: 0; line-height: 1.1;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.6); white-space: nowrap;
+        }
+
+        .title-sub-bottom {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem; font-weight: 400; color: #CCCCCC;
+            letter-spacing: 2px; display: block; margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); white-space: nowrap;
+        }
+
+        .hero-slogan {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem; font-style: italic; font-weight: 400;
+            color: #F8B400; position: relative; padding-left: 20px;
+            margin-top: 40px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            white-space: nowrap;
+        }
+
+        .hero-slogan::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background-color: #E13062; border-radius: 2px;
+            box-shadow: 0 0 8px #E13062, 0 0 16px #E13062;
+        }
+
+        #carousel1 {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .carousel-section {
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .carousel-section.carousel-alt {
+            min-height: auto; justify-content: flex-start;
+            padding-top: 20px; padding-bottom: 40px;
+        }
+
+        .carousel-track-container {
+            overflow-x: auto !important;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+
+        .carousel-track-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-card {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* GLASSMORPHISM TIMELINE AGENDA */
+        .glass-timeline {
+            background: rgba(255, 255, 255, 0.04) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #fff;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-timeline .timeline-section-title {
+            color: #ffffff !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .glass-timeline .timeline-controls {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 12px;
+            padding: 8px 14px;
+        }
+        
+        .glass-timeline .filter-label {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 0.85rem;
+        }
+        
+        .glass-timeline .select-filter-pill {
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-timeline .select-filter-pill option {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .timeline-list-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease-in-out;
+        }
+        
+        .timeline-list-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .tli-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .tli-date {
+            min-width: 140px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tli-title {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: #f8fafc;
+            line-height: 1.4;
+        }
+
+        .tli-badge {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .empty-timeline {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .timeline-footer-action {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-see-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 10px 24px;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-see-more:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-see-more i {
+            font-size: 0.8rem;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-see-more:hover i {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-list-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .tli-left { flex-direction: column; align-items: flex-start; gap: 4px; }
+            .tli-date { min-width: auto; font-size: 0.8rem; }
+            .tli-title { font-size: 0.92rem; }
+            .glass-timeline { padding: 20px 16px; }
+            .glass-timeline .timeline-controls { justify-content: center; width: 100%; }
+            .carousel-track-container {
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            }
+        }
+    </style>
+</head>
+<body class="page-home">
+
+    <!-- Dynamic Background -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" style="position: relative; z-index: 1;">
+
+        <div class="hero-snap-wrapper" id="snap-wrapper">
+
+            <!-- HERO SECTION -->
+            <!-- HERO SECTION -->
+            <section class="hero-section" id="hero-container">
+                <div class="persistent-hero-title">
+                    <div class="left-overlay">
+                        <div class="hero-title-group">
+                            <span class="title-sub-top">Himpunan Mahasiswa</span>
+                            <h1 class="title-main">GEOFISIKA</h1>
+                            <span class="title-sub-bottom">UNIVERSITAS GADJAH MADA</span>
+                        </div>
+                        <p class="hero-slogan" style="letter-spacing: 3px;">
+                            “Satu Jiwa, Jaya Geofisika!”
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <script src="js/script.js"></script>
+
+            <!-- CAROUSEL 1: KEGIATAN TERBARU HMGF UGM -->
+            <section class="carousel-section" id="carousel1">
+                <div class="carousel-header">
+                    <div class="stacked-title-header">
+                        <div class="stacked-title">
+                            <span class="title-top">Kegiatan Terbaru</span>
+                            <span class="title-bottom">HMGF UGM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn btn-prev" aria-label="Previous Slide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="carousel-track-container">
+                        <div class="carousel-track" id="carouselTrackHMGF">
+                            <div class="carousel-card skeleton">
+                                <div class="card-image-box bone-img"></div>
+                                <div class="card-content">
+                                    <div class="bone-tag bone-glossy"></div>
+                                    <div class="bone-title bone-glossy"></div>
+                                    <div class="bone-text bone-glossy"></div>
+                                    <div class="bone-text short bone-glossy"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn btn-next" aria-label="Next Slide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- CAROUSEL 2: PROGRAM KERJA & PRESTASI -->
+            <section class="carousel-section carousel-alt" id="carousel2">
+                <div class="carousel-header">
+                    <div class="stacked-title-header">
+                        <div class="stacked-title">
+                            <span class="title-top">Program Kerja &</span>
+                            <span class="title-bottom">Prestasi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn btn-prev" aria-label="Previous Slide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="carousel-track-container">
+                        <div class="carousel-track" id="carouselTrackProker">
+                            <div class="carousel-card skeleton">
+                                <div class="card-image-box bone-img"></div>
+                                <div class="card-content">
+                                    <div class="bone-tag bone-glossy"></div>
+                                    <div class="bone-title bone-glossy"></div>
+                                    <div class="bone-text bone-glossy"></div>
+                                    <div class="bone-text short bone-glossy"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn btn-next" aria-label="Next Slide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- KALENDER AGENDA MENDATANG TERINTEGRASI -->
+            <section class="timeline-section-integrated" style="padding: 0 20px; margin-top: 80px;">
+                <div class="timeline-block glass-timeline">
+                    <div class="timeline-section-header">
+                        <div class="timeline-brand-badges">
+                            <img src="assets/logo_HMGF.png" alt="Logo HMGF" class="timeline-title-logo" id="logoHmgf">
+                            <img src="assets/logo_SEG_putih.png" alt="Logo SEG UGM-SC" class="timeline-title-logo" id="logoSeg">
+                            <h2 class="timeline-section-title">Kalender Agenda Mendatang</h2>
+                        </div>
+                        
+                        <div class="timeline-controls">
+                            <div class="filter-group-wrapper">
+                                <div class="filter-item">
+                                    <label for="divisiFilter" class="filter-label">Divisi:</label>
+                                    <select class="select-filter-pill" id="divisiFilter" onchange="renderUpcomingTimeline()">
+                                        <option value="ALL">Semua Divisi</option>
+                                        <option value="PENGURUS INTI">Pengurus Inti</option>
+                                        <option value="DEPARTEMEN PSDM">Departemen PSDM</option>
+                                        <option value="DEPARTEMEN MINKAT">Departemen Minkat</option>
+                                        <option value="DEPARTEMEN HUMAS">Departemen Humas</option>
+                                        <option value="DEPARTEMEN INTERNAL">Departemen Internal</option>
+                                        <option value="DEPARTEMEN MEDINFO">Departemen Medinfo</option>
+                                        <option value="DEPARTEMEN AKADEMIK">Departemen Akademik</option>
+                                        <option value="DEPARTEMEN KEWIRAUSAHAAN">Departemen Kewirausahaan</option>
+                                        <option value="DEPARTEMEN SOSMAS">Departemen Sosmas</option>
+                                        <option value="SEG UGM-SC">SEG UGM-SC</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event List Body -->
+                    <div class="timeline-list-wrapper" id="timelineListBody">
+                        <div class="empty-timeline">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Memuat agenda mendatang...
+                        </div>
+                    </div>
+
+                    <!-- Footer Action -->
+                    <div class="timeline-footer-action">
+                        <a href="timeline.html" class="btn-see-more">
+                            <span>Lihat Selengkapnya</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER PLACEHOLDER -->
+            <div id="footer-placeholder"></div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal Detail Agenda (Akan dikontrol oleh timeline.js) -->
+    <div class="modal-overlay" id="eventModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close-btn" onclick="closeModal()" aria-label="Tutup Detail">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="modal-header-tags">
+                <span class="modal-entity-tag" id="modalEntityTag">HMGF</span>
+                <span class="modal-divisi-tag" id="modalDivisiTag">DIVISI</span>
+            </div>
+
+            <h3 class="modal-event-title" id="modalTitle">Nama Agenda</h3>
+            
+            <div class="modal-detail-item">
+                <i class="fa-regular fa-calendar-days modal-icon"></i>
+                <span id="modalDate">Tanggal Agenda</span>
+            </div>
+
+            <div class="modal-detail-item" id="modalLocationBox">
+                <i class="fa-solid fa-location-dot modal-icon icon-red"></i>
+                <span id="modalLocation">Lokasi Kegiatan</span>
+            </div>
+
+            <p class="modal-description" id="modalDescription">Deskripsi kegiatan akan muncul di sini.</p>
+
+            <div class="modal-action-box" id="modalActionBox">
+                <a href="#" id="modalLinkBtn" target="_blank" rel="noopener noreferrer" class="modal-btn-link">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Tautan Kegiatan / Guidebook
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Navbar Dynamic -->
+    <script src="js/navbar.js"></script>
+    <!-- Menghubungkan langsung timeline.js untuk memuat Data, Modal, dan Global State -->
+    <script src="js/timeline.js"></script>
+
+    <!-- GABUNGAN LOGIKA SCRIPT (KHUSUS INSIGHT CAROUSEL & UPCOMING EVENTS) -->
+    <script>
+        // ==========================================================================
+        // KONFIGURASI API & SHEET CAROUSEL BERITA
+        // Konstanta konflik (spt GOOGLE_SHEET_ID) sudah dihapus; memakai bawaan timeline.js
+        // ==========================================================================
+        const BASE_STEIN_URL = "https://sheetdb.io/api/v1/h8t8pf39u16ad";
+        const SHEET_HMGF = "Seputar HMGF";
+        const SHEET_SEG = "SEG News";
+
+        const GOOGLE_SHEET_GIDS = {
+            [SHEET_HMGF]: "1262503653",
+            [SHEET_SEG]: "840471671"
+        };
+
+        // ==========================================================================
+        // HELPER UTILS & NORMALISASI DATA ARTIKEL
+        // ==========================================================================
+        function normalizeArticleData(item, sourceSheet = '') {
+            if (!item) return null;
+            const getCell = (...keys) => {
+                for (const key of keys) {
+                    if (item[key] !== undefined && item[key] !== null) {
+                        return String(item[key]).trim();
+                    }
+                }
+                return '';
+            };
+
+            const extractedTitle = getCell('Judul Konten / Berkas', 'Judul Berita', 'Judul', 'judul', 'title');
+            const generatedId = String(getCell('ID', 'Id', 'id') || extractedTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+
+            return {
+                id: generatedId,
+                judul: extractedTitle,
+                kategoriUtama: getCell('Kategori Utama', 'Kategori', 'kategori') || 'Geofisika',
+                jenisKonten: getCell('Jenis Konten'),
+                tanggal: getCell('Tanggal Upload', 'Tanggal', 'tanggal') || '-',
+                penulis: getCell('Penulis', 'penulis') || 'Redaksi HMGF',
+                gambar_hero: getCell('Gambar Link', 'gambar_hero', 'Gambar'),
+                isi_1: getCell('Isi Paragraf / Gambar', 'isi_1', 'Isi 1'),
+                published: item.Published ?? item.published ?? true,
+                sourceSheet: sourceSheet
+            };
+        }
+
+        function formatDriveUrl(rawUrl) {
+            if (!rawUrl || typeof rawUrl !== 'string') return '';
+            let cleanUrl = rawUrl.split('|')[0].trim();
+            if (!cleanUrl || cleanUrl === '#' || /^#(ref|n\/a|value)!?$/i.test(cleanUrl)) return '';
+
+            const match = cleanUrl.match(/(?:file\/d\/|id=|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) return `https://lh3.googleusercontent.com/d/${match[1]}`;
+            return cleanUrl;
+        }
+
+        function isPublished(val) {
+            if (typeof val === 'boolean') return val;
+            if (typeof val === 'number') return val === 1;
+            if (typeof val === 'string') {
+                const lower = val.trim().toLowerCase();
+                return lower === 'true' || lower === '1';
+            }
+            return true;
+        }
+
+        function getGoogleSheetCsvUrl(sheetName) {
+            const baseUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv`;
+            const gid = GOOGLE_SHEET_GIDS[sheetName];
+            if (gid) return `${baseUrl}&gid=${encodeURIComponent(gid)}`;
+            return `${baseUrl}&sheet=${encodeURIComponent(sheetName)}`;
+        }
+
+        // Memanfaatkan fungsi fetchWithTimeout dan parseGoogleSheetCsv dari timeline.js
+        async function fetchFromStein(sheetName) {
+            const response = await fetchWithTimeout(`${BASE_STEIN_URL}?sheet=${encodeURIComponent(sheetName)}`, { mode: 'cors' });
+            if (!response.ok) throw new Error(`API Error ${response.status}`);
+            const data = await response.json();
+            if (!Array.isArray(data)) throw new Error(`Format data tidak valid.`);
+            return data;
+        }
+
+        async function fetchFromGoogleSheet(sheetName) {
+            const response = await fetchWithTimeout(getGoogleSheetCsvUrl(sheetName), { mode: 'cors' });
+            if (!response.ok) throw new Error(`Google Sheets CSV Error ${response.status}`);
+            return parseGoogleSheetCsv(await response.text());
+        }
+
+        async function fetchSheetData(sheetName) {
+            try {
+                return await fetchFromStein(sheetName);
+            } catch (apiError) {
+                console.warn(`Gagal memuat API untuk sheet "${sheetName}", mencoba CSV Google Sheets...`, apiError);
+                return fetchFromGoogleSheet(sheetName);
+            }
+        }
+
+        // ==========================================================================
+        // RENDER UI TIMELINE MENDATANG (Di halaman Home)
+        // ==========================================================================
+        function renderUpcomingTimeline() {
+            const listBody = document.getElementById('timelineListBody');
+            const divisiFilterEl = document.getElementById('divisiFilter');
+            const selectedDivisi = divisiFilterEl ? divisiFilterEl.value : 'ALL';
+
+            if (!listBody) return;
+            listBody.innerHTML = '';
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // calendarState & normalizeDivisi disediakan secara global oleh timeline.js
+            let upcomingEvents = calendarState.allEvents.filter(event => {
+                if (!event.tanggal_mulai) return false;
+
+                const tglEndStr = event.tanggal_selesai || event.tanggal_mulai;
+                const [y, m, d] = tglEndStr.split('-').map(Number);
+                const eventEndDate = new Date(y, m - 1, d, 23, 59, 59, 999);
+
+                const isUpcoming = eventEndDate >= today;
+                const mappedDivisi = normalizeDivisi(event.divisi_departemen);
+                const matchesDivisi = selectedDivisi === 'ALL' || mappedDivisi === selectedDivisi;
+
+                return isUpcoming && matchesDivisi;
+            });
+
+            upcomingEvents.sort((a, b) => new Date(a.tanggal_mulai) - new Date(b.tanggal_mulai));
+            const limitedEvents = upcomingEvents.slice(0, 5);
+
+            if (limitedEvents.length === 0) {
+                listBody.innerHTML = `<div class="empty-timeline"><i class="fa-regular fa-calendar-xmark"></i> Tidak ada agenda mendatang saat ini.</div>`;
+                return;
+            }
+
+            limitedEvents.forEach(e => {
+                const divisiKey = normalizeDivisi(e.divisi_departemen);
+                // DIVISI_COLORS dan DEFAULT_COLOR disediakan oleh timeline.js
+                const color = DIVISI_COLORS[divisiKey] || DEFAULT_COLOR; 
+                const safeEventJson = JSON.stringify(e).replace(/'/g, "&apos;");
+
+                let dateText = e.tanggal_mulai;
+                if (e.tanggal_selesai && e.tanggal_selesai !== e.tanggal_mulai) {
+                    dateText += ` s/d ${e.tanggal_selesai}`;
+                }
+
+                listBody.innerHTML += `
+                    <div class="timeline-list-item" onclick='openModal(${safeEventJson})'>
+                        <div class="tli-left">
+                            <div class="tli-date"><i class="fa-regular fa-calendar-days"></i> ${dateText}</div>
+                            <div class="tli-title">${e.nama_kegiatan}</div>
+                        </div>
+                        <div class="tli-badge" style="background: ${color}22; color: ${color}; border: 1px solid ${color}44;">
+                            ${e.HMGF_SEG || 'HMGF'}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Mencegat eksekusi renderCalendar di timeline.js agar sinkron dengan Index HTML
+        const originalRenderCalendar = window.renderCalendar;
+        window.renderCalendar = function() {
+            if (originalRenderCalendar) originalRenderCalendar();
+            renderUpcomingTimeline();
+        };
+
+        // ==========================================================================
+        // CAROUSEL DATA FETCHING LOGIC (LATEST NEWS & PROKER)
+        // ==========================================================================
+        async function initLatestNewsCarousel() {
+            const track = document.getElementById('carouselTrackHMGF');
+            if (!track) return;
+            try {
+                const [rawHMGF, rawSEG] = await Promise.all([
+                    fetchSheetData(SHEET_HMGF).catch(() => []),
+                    fetchSheetData(SHEET_SEG).catch(() => [])
+                ]);
+                const articles = [
+                    ...rawHMGF.map(i => normalizeArticleData(i, SHEET_HMGF)),
+                    ...rawSEG.map(i => normalizeArticleData(i, SHEET_SEG))
+                ].filter(i => isPublished(i.published));
+                
+                const allowed = ["geofisiana", "metode geofisika", "penelitian", "seg news"];
+                const excluded = ["majalah spektral", "geolibrary"];
+                
+                const filtered = articles.filter(i => {
+                    const catStr = ((i.kategoriUtama || '') + ' ' + (i.jenisKonten || '')).toLowerCase();
+                    const isAllowed = allowed.some(keyword => catStr.includes(keyword));
+                    const isExcluded = excluded.some(keyword => catStr.includes(keyword));
+                    return isAllowed && !isExcluded;
+                });
+                
+                if (filtered.length === 0) return;
+                track.innerHTML = '';
+                filtered.slice(0, 8).forEach(item => {
+                    const title = item.judul || 'Kegiatan Terbaru';
+                    const category = item.sourceSheet === SHEET_SEG 
+                        ? 'SEG News' 
+                        : (item.jenisKonten || (item.kategoriUtama && item.kategoriUtama !== 'Geofisika' ? item.kategoriUtama : 'Seputar HMGF'));
+                    const imgUrl = formatDriveUrl(item.gambar_hero) || 'assets/earth-day.jpg';
+                    const cleanExcerpt = (item.isi_1 || '').replace(/#+\s*/g, '').substring(0, 250) + '...';
+                    
+                    track.innerHTML += `
+                        <div class="carousel-card" onclick="window.location.href='berita-insight.html?judul=${encodeURIComponent(title)}'" style="cursor: pointer;">
+                            <div class="card-image-box"><img src="${imgUrl}" alt="${title}" onerror="this.onerror=null; this.src='assets/earth-day.jpg';"></div>
+                            <div class="card-content"><span class="card-tag">${category}</span><h3>${title}</h3><p>${cleanExcerpt}</p></div>
+                        </div>`;
+                });
+            } catch (err) { console.warn("Gagal memuat carousel kegiatan terbaru:", err); }
+        }
+
+        async function initProkerCarousel() {
+            const track = document.getElementById('carouselTrackProker');
+            if (!track) return;
+            try {
+                const [rawHMGF, rawSEG] = await Promise.all([
+                    fetchSheetData(SHEET_HMGF).catch(() => []),
+                    fetchSheetData(SHEET_SEG).catch(() => [])
+                ]);
+                const articles = [
+                    ...rawHMGF.map(i => normalizeArticleData(i, SHEET_HMGF)),
+                    ...rawSEG.map(i => normalizeArticleData(i, SHEET_SEG))
+                ].filter(i => isPublished(i.published));
+                
+                const allowed = ["majalah spektral", "geolibrary"];
+                const filtered = articles.filter(i => {
+                    const catStr = ((i.kategoriUtama || '') + ' ' + (i.jenisKonten || '')).toLowerCase();
+                    return allowed.some(keyword => catStr.includes(keyword));
+                });
+                
+                if (filtered.length === 0) return;
+                track.innerHTML = '';
+                filtered.slice(0, 8).forEach(item => {
+                    const title = item.judul || 'Program Kerja & Prestasi';
+                    const category = item.sourceSheet === SHEET_SEG 
+                        ? 'SEG News' 
+                        : (item.jenisKonten || (item.kategoriUtama && item.kategoriUtama !== 'Geofisika' ? item.kategoriUtama : 'Seputar HMGF'));
+                    const imgUrl = formatDriveUrl(item.gambar_hero) || 'assets/earth-day.jpg';
+                    const cleanExcerpt = (item.isi_1 || '').replace(/#+\s*/g, '').substring(0, 250) + '...';
+
+                    track.innerHTML += `
+                        <div class="carousel-card" onclick="window.location.href='berita-insight.html?judul=${encodeURIComponent(title)}'" style="cursor: pointer;">
+                            <div class="card-image-box"><img src="${imgUrl}" alt="${title}" onerror="this.onerror=null; this.src='assets/earth-day.jpg';"></div>
+                            <div class="card-content"><span class="card-tag">${category}</span><h3>${title}</h3><p>${cleanExcerpt}</p></div>
+                        </div>`;
+                });
+            } catch (err) { console.warn("Gagal memuat carousel proker:", err); }
+        }
+
+        // ==========================================================================
+        // LAYOUT & DOM INITIALIZATION
+        // ==========================================================================
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveMenu();
+                if (typeof initNavbarScroll === 'function') initNavbarScroll();
+            }).catch(err => console.error('Gagal memuat navbar:', err));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('footer-placeholder').innerHTML = data; 
+            }).catch(err => console.error('Gagal memuat footer:', err));
+
+        function highlightActiveMenu() {
+            const navbar = document.getElementById('navbar-placeholder');
+            if (!navbar) return;
+            navbar.querySelectorAll('.nav-menu .active').forEach(el => el.classList.remove('active'));
+            const homeLink = navbar.querySelector('.nav-menu a[href="index.html"], .nav-menu a[href="./"]');
+            if (homeLink) homeLink.classList.add('active');
+        }
+
+        // Scroll Snap Controller
+        const carousel1 = document.getElementById('carousel1');
+        window.addEventListener('scroll', function() {
+            let scrollPos = window.scrollY || document.documentElement.scrollTop;
+            document.documentElement.style.setProperty('--scroll-y', `${scrollPos}px`);
+
+            if (carousel1 && scrollPos >= carousel1.offsetTop - 10) {
+                document.documentElement.style.scrollSnapType = 'none';
+            } else {
+                document.documentElement.style.scrollSnapType = 'y mandatory';
+            }
+        }, { passive: true });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup Carousel Controls
+            const carousels = document.querySelectorAll('.carousel-section');
+            carousels.forEach(section => {
+                const trackContainer = section.querySelector('.carousel-track-container');
+                const btnPrev = section.querySelector('.btn-prev');
+                const btnNext = section.querySelector('.btn-next');
+
+                if (trackContainer && btnPrev && btnNext) {
+                    const scrollAmount = 350;
+                    
+                    const scrollNext = () => {
+                        if (trackContainer.scrollLeft + trackContainer.clientWidth >= trackContainer.scrollWidth - 10) {
+                            trackContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            trackContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        }
+                    };
+
+                    btnNext.addEventListener('click', () => {
+                        trackContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    });
+                    btnPrev.addEventListener('click', () => {
+                        trackContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    });
+
+                    let autoScrollTimer = setInterval(scrollNext, 3000);
+
+                    section.addEventListener('mouseenter', () => clearInterval(autoScrollTimer));
+                    section.addEventListener('mouseleave', () => autoScrollTimer = setInterval(scrollNext, 3000));
+                }
+            });
+
+            // Hanya memanggil fitur carousel karena Timeline akan otomatis berjalan berkat timeline.js
+            initLatestNewsCarousel();
+            initProkerCarousel();
+        });
+    </script>
+
+    <script src="js/seismic-cursor.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html>

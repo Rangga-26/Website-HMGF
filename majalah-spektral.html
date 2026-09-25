@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majalah Spektral - HMGF UGM</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <!-- Font Roboto & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS External -->
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/geo-insight.css">
+
+    <style>
+        /* Floating GeoBot AI Widget Styling */
+        .geobot-floating-wrapper {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            font-family: 'Roboto', sans-serif;
+        }
+        .geobot-toggle-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .geobot-toggle-btn:hover {
+            transform: scale(1.08);
+            background: #1e293b;
+        }
+        .geobot-chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 360px;
+            max-width: 90vw;
+            height: 480px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .geobot-chat-header {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .geobot-chat-header h4 {
+            margin: 0;
+            font-size: 0.98rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .geobot-close-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .geobot-close-btn:hover { opacity: 1; }
+        .geobot-messages-container {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+        .geobot-input-area {
+            padding: 10px 14px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .geobot-input-field {
+            flex: 1;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            outline: none;
+        }
+        .geobot-input-field:focus { border-color: #0f172a; }
+        .geobot-action-btn {
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .geobot-action-btn:hover { background: #1e293b; }
+        .geobot-action-btn.mic-btn {
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+        }
+        .geobot-action-btn.mic-btn.mic-active {
+            background: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="page-spektral">
+
+    <!-- Container Background Acak -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Container Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header Section -->
+    <header class="geo-header-natural" style="position: relative; z-index: 1;">
+        <div class="header-container">
+            <h1 class="seg-title geofisiana-title" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.06em !important;">MAJALAH SPEKTRAL</h1>
+            <p class="seg-subtitle">Arsip publikasi, wawasan, dan edisi majalah kebumian HMGF UGM</p>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main class="geo-main-grid" style="position: relative; z-index: 1;">
+        <!-- Kolom Utama: Feed Berita -->
+        <section>
+            <div id="newsFeed">
+                <!-- Skeleton Loader -->
+                <div style="text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; color: #64748b;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: #0f172a;"></i>
+                    <p style="margin-top: 12px; font-weight: 500;">Memuat edisi Majalah Spektral...</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Halaman / Pagination Dinamis -->
+            <div class="geo-pagination" id="paginationContainer" style="display: none;"></div>
+        </section>
+
+        <!-- Sidebar Kanan -->
+        <aside>
+            <!-- Widget Pencari Judul -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Cari Judul Edisi</span>
+                </div>
+                <div class="search-box-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Ketik judul majalah..." onkeyup="handleSearchInput(event)">
+                    <button id="searchBtn" class="search-icon-btn" onclick="clearSearchInput()">
+                        <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Widget Kategori -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Kategori lainnya</span>
+                </div>
+                <ul class="natural-cat-list">
+                    <li><a href="seputar-hmgf.html">Seputar HMGF <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="seg-news.html">SEG News <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="metode-geofisika.html">Metode Geofisika <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="majalah-spektral.html" class="active">Majalah Spektral <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geofisiana.html">Geofisiana <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geolibrary.html">Geolibrary <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="penelitian.html">Penelitian <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Widget Filter Tahun Arsip -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Tahun Arsip</span>
+                </div>
+                <div class="natural-year-grid" id="yearTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByYear('ALL')">Semua Tahun</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Container Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script External Navbar & Engine Utama -->
+    <script src="js/navbar.js"></script>
+    <script src="js/insight.js"></script>
+
+    <!-- LOGIKA KHUSUS SPEKTRAL FEED -->
+    <script>
+        // State Global Majalah Spektral
+        const ITEMS_PER_PAGE = 5;
+        let allSpektralArticles = [];
+        let activeFilteredArticles = [];
+        let selectedYear = 'ALL';
+        let searchQuery = '';
+        let currentPage = 1;
+
+        function extractYear(dateString) {
+            if (!dateString) return null;
+            const match = dateString.match(/\b(20\d{2}|19\d{2})\b/);
+            return match ? match[0] : null;
+        }
+
+        // Memuat artikel khusus berkategori Majalah Spektral dari Sheet HMGF & SEG
+        async function loadSpektralArticles() {
+            const feedContainer = document.getElementById('newsFeed');
+            try {
+                const [rawHMGF, rawSEG] = await Promise.all([
+                    fetchSheetData(SHEET_HMGF).catch(() => []),
+                    fetchSheetData(SHEET_SEG).catch(() => [])
+                ]);
+
+                const articlesHMGF = (Array.isArray(rawHMGF) ? rawHMGF : []).map(item => normalizeArticleData(item, SHEET_HMGF));
+                const articlesSEG = (Array.isArray(rawSEG) ? rawSEG : []).map(item => normalizeArticleData(item, SHEET_SEG));
+                const combinedData = [...articlesHMGF, ...articlesSEG];
+
+                // Filter artikel berkategori "Majalah Spektral" & terpublikasi
+                const filtered = combinedData.filter(item => {
+                    if (!item || !item.judul) return false;
+                    const kategoriStr = (item.kategoriUtama || '').toLowerCase();
+                    const jenisStr = (item.jenisKonten || '').toLowerCase();
+                    const isSpektralCategory = kategoriStr.includes('spektral') || kategoriStr.includes('spektral') || jenisStr.includes('spektral') || jenisStr.includes('spektral');
+                    return isSpektralCategory && isPublished(item.published);
+                });
+
+                allSpektralArticles = filtered.map(article => ({
+                    ...article,
+                    extracted_year: extractYear(article.tanggal)
+                }));
+
+                renderYearTags();
+                applyFilters();
+
+            } catch (error) {
+                console.error("Gagal memuat edisi Majalah Spektral:", error);
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #fee2e2; color: #ef4444;">
+                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                            <p style="margin-top: 10px; font-weight: 500;">Gagal memuat edisi Majalah Spektral. Silakan coba beberapa saat lagi.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function handleSearchInput(event) {
+            searchQuery = event.target.value.toLowerCase().trim();
+            const iconEl = document.getElementById('searchIcon');
+            const btnEl = document.getElementById('searchBtn');
+
+            if (searchQuery.length > 0) {
+                if (iconEl) iconEl.className = "fa-solid fa-xmark";
+                if (btnEl) { btnEl.classList.add("search-clear-btn"); btnEl.classList.remove("search-icon-btn"); }
+            } else {
+                if (iconEl) iconEl.className = "fa-solid fa-magnifying-glass";
+                if (btnEl) { btnEl.classList.add("search-icon-btn"); btnEl.classList.remove("search-clear-btn"); }
+            }
+
+            applyFilters();
+        }
+
+        function clearSearchInput() {
+            const inputEl = document.getElementById('searchInput');
+            if (inputEl && inputEl.value !== '') {
+                inputEl.value = '';
+                searchQuery = '';
+                handleSearchInput({ target: inputEl });
+            }
+        }
+
+        function renderYearTags() {
+            const container = document.getElementById('yearTagsContainer');
+            if (!container) return;
+            
+            container.innerHTML = '<span class="natural-year-tag active" onclick="filterByYear(\'ALL\')">Semua Tahun</span>';
+            const years = [...new Set(allSpektralArticles.map(a => a.extracted_year).filter(Boolean))].sort((a, b) => b - a);
+
+            years.forEach(year => {
+                const tag = document.createElement('span');
+                tag.className = 'natural-year-tag';
+                tag.innerText = year;
+                tag.onclick = () => filterByYear(year);
+                container.appendChild(tag);
+            });
+        }
+
+        function filterByYear(year) {
+            selectedYear = year;
+            const tags = document.querySelectorAll('#yearTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                const tagText = tag.innerText.trim();
+                if (tagText === String(year) || (year === 'ALL' && tagText === 'Semua Tahun')) {
+                    tag.classList.add('active');
+                } else {
+                    tag.classList.remove('active');
+                }
+            });
+            applyFilters();
+        }
+
+        function applyFilters() {
+            activeFilteredArticles = allSpektralArticles.filter(item => {
+                const matchTitle = !searchQuery || (item.judul && item.judul.toLowerCase().includes(searchQuery));
+                const matchYear = (selectedYear === 'ALL') || (item.extracted_year === String(selectedYear));
+                return matchTitle && matchYear;
+            });
+
+            const feedContainer = document.getElementById('newsFeed');
+
+            if (activeFilteredArticles.length === 0) {
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.8); border-radius: 18px; border: 1px dashed #cbd5e1; color: #64748b;">
+                            <i class="fa-solid fa-magnifying-glass" style="font-size: 2.2rem; margin-bottom: 12px; color: #0f172a;"></i>
+                            <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0;">Edisi Tidak Ditemukan</h3>
+                            <p style="font-size: 0.88rem; margin-top: 4px;">Tidak ditemukan edisi yang cocok dengan kata kunci "${searchQuery}"${selectedYear !== 'ALL' ? ` pada tahun ${selectedYear}` : ''}.</p>
+                        </div>
+                    `;
+                }
+                const paginationContainer = document.getElementById('paginationContainer');
+                if (paginationContainer) paginationContainer.style.display = 'none';
+                return;
+            }
+
+            renderPage(1);
+            setupPagination();
+        }
+
+        function renderPage(pageNumber) {
+            currentPage = pageNumber;
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+            feedContainer.innerHTML = '';
+
+            const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const pageArticles = activeFilteredArticles.slice(startIndex, endIndex);
+
+            pageArticles.forEach(item => {
+                const encodedTitle = encodeURIComponent((item.judul || '').trim());
+                const detailUrl = `berita-insight.html?judul=${encodedTitle}`;
+                const imageSrc = formatDriveUrl(item.gambar_hero) || 'assets/SEG_News/pantai.png';
+                const cleanExcerpt = (item.isi_1 || '').replace(/#+\s*/g, '').substring(0, 500) + '...';
+
+                feedContainer.innerHTML += `
+                    <article class="news-item geo-card">
+                        <h2 class="news-item-title">${item.judul || 'Tanpa Judul'}</h2>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-calendar-days"></i> ${item.tanggal || '-'}</span>
+                            <span class="news-meta-divider">•</span>
+                            <span><i class="fa-solid fa-folder-open"></i> ${item.kategoriUtama || 'Majalah Spektral'}</span>
+                        </div>
+                        <div class="news-image-wrapper">
+                            <img src="${imageSrc}" alt="${item.judul}" class="news-image" onerror="this.onerror=null;this.src='assets/SEG_News/pantai.png';">
+                        </div>
+                        <p class="news-excerpt">${cleanExcerpt}</p>
+                        <div class="btn-selengkapnya-container">
+                            <a href="${detailUrl}" class="btn-geo-natural">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            });
+
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+
+        function setupPagination() {
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (!paginationContainer) return;
+            paginationContainer.innerHTML = '';
+
+            const totalPages = Math.ceil(activeFilteredArticles.length / ITEMS_PER_PAGE);
+            if (totalPages <= 1) {
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            paginationContainer.style.display = 'flex';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `geo-page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => { renderPage(i); updateActiveBtn(i); };
+                paginationContainer.appendChild(btn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'geo-page-btn';
+            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    const nextPage = currentPage + 1;
+                    renderPage(nextPage);
+                    updateActiveBtn(nextPage);
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function updateActiveBtn(activePage) {
+            const buttons = document.querySelectorAll('.geo-page-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx + 1 === activePage) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+        }
+
+        // Inisialisasi Halaman saat DOM siap
+        document.addEventListener("DOMContentLoaded", () => {
+            // Memuat Navbar & Footer secara dinamis
+            fetch('navbar.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('navbar-placeholder');
+                    if (el) el.innerHTML = data;
+                    highlightActiveMenu();
+                    if (typeof initNavbarScroll === 'function') initNavbarScroll();
+                })
+                .catch(err => console.error('Gagal memuat navbar:', err));
+
+            fetch('footer.html')
+                .then(res => res.text())
+                .then(data => {
+                    const el = document.getElementById('footer-placeholder');
+                    if (el) el.innerHTML = data;
+                })
+                .catch(err => console.error('Gagal memuat footer:', err));
+
+            function highlightActiveMenu() {
+                const navbar = document.getElementById('navbar-placeholder');
+                if (!navbar) return;
+                navbar.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+                const link = navbar.querySelector('a[href*="majalah-spektral.html"]');
+                if (link) {
+                    link.classList.add('active');
+                    const parent = link.closest('.nav-item');
+                    if (parent) {
+                        const parentLink = parent.querySelector('.nav-link');
+                        if (parentLink) parentLink.classList.add('active');
+                    }
+                }
+            }
+
+            // Memuat artikel feed Majalah Spektral
+            loadSpektralArticles();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1067 @@
+/* ==========================================================================
+   GEO-INSIGHT UNIFIED DESIGN SYSTEM & DETAIL PAGE STYLES
+   - System: Clean Glass Monochrome (Pure Black & White Theme)
+   - Pages: Geolibrary, Geofisiana, Metode Geofisika, SEG News, & Berita Detail
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+/* ==========================================================================
+   1. GLOBAL VARIABLES & RESET (MONOCHROME ONLY)
+   ========================================================================== */
+
+:root {
+    /* Base & Surface Colors */
+    --bg-light: #ffffff;
+    --bg-surface: #f8fafc;
+    --border-color: #e2e8f0;
+    
+    /* Card Glassmorphic Monochrome */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-bg-hover: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-border-hover: rgba(0, 0, 0, 0.25);
+    
+    /* Brand & Accent Colors (Full Monochrome) */
+    --accent-black: #0f172a;
+    --accent-gray: #334155;
+    --accent-gray-light: #f1f5f9;
+    --accent-gray-border: #cbd5e1;
+    --primary-color: #0f172a;
+    --primary-hover: #334155;
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-dark: #0f172a;
+    --text-body: #334155;
+    --text-dim: #64748b;
+    --text-muted: #94a3b8;
+    
+    /* Shadows & Radii */
+    --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.08);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --radius-lg: 18px;
+    --radius-md: 10px;
+    
+    /* Typography & Layout */
+    --font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-news-bold: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --navbar-height: 90px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. HEADER SECTIONS (LIST & FEED PAGES)
+   ========================================================================== */
+
+.geo-header-natural {
+    padding: calc(var(--navbar-height) + 25px) 20px 35px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.geo-header-natural .header-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.geo-header-natural .seg-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin: 0 auto 12px auto;
+    text-align: center;
+    word-break: break-word;
+}
+
+.geo-header-natural .seg-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.geofisiana-title,
+.page-geofisiana .geo-header-natural .seg-title {
+    font-family: var(--font-news-bold) !important;
+    font-size: 2.8rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.06em !important; 
+    word-spacing: 0.18em !important;
+    line-height: 1.2 !important;
+    color: #0f172a !important;
+    text-transform: uppercase;
+    text-align: center !important;
+    margin: 0 auto 14px auto !important;
+}
+
+/* ==========================================================================
+   3. LAYOUT GRID CONTAINERS
+   ========================================================================== */
+
+.geo-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 310px;
+    gap: 36px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   4. CARD & ITEM STYLING (FEED & LIST VIEW)
+   ========================================================================== */
+
+.geo-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-bottom: 32px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-glass);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.geo-card:hover {
+    background: var(--card-bg-hover);
+    transform: translateY(-4px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--shadow-hover);
+}
+
+.geo-card .news-item-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--text-primary);
+    margin: 0 0 14px 0;
+    word-wrap: break-word;
+    text-align: justify;
+    word-spacing: 0.12em;
+    transition: color 0.2s ease;
+}
+
+.geo-card .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.geo-card .news-meta i {
+    margin-right: 6px;
+    color: var(--text-dim);
+}
+
+.metode-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--accent-gray-light);
+    color: var(--accent-black);
+    border: 1px solid var(--accent-gray-border);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-left: 4px;
+    text-transform: uppercase;
+}
+
+.news-meta-divider {
+    color: var(--accent-gray-border);
+    font-weight: 700;
+    margin: 0 4px;
+    user-select: none;
+}
+
+.geo-card .news-image-wrapper {
+    width: 100%;
+    height: 300px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #f1f5f9;
+    border: 1px solid var(--card-border);
+}
+
+.geo-card .news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.geo-card:hover .news-image {
+    transform: scale(1.03);
+}
+
+.geo-card .news-excerpt {
+    font-size: 0.96rem;
+    color: var(--text-body);
+    line-height: 1.75;
+    margin: 0 0 20px 0;
+    text-align: justify;
+    text-indent: 2.5em;
+    word-spacing: 0.05em;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   5. BUTTONS & ACTIONS
+   ========================================================================== */
+
+.btn-selengkapnya-container {
+    margin-top: 16px;
+}
+
+.btn-geo-natural {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: var(--accent-black);
+    color: #ffffff !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-black);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-geo-natural i {
+    font-size: 0.85rem;
+    transition: transform 0.25s ease;
+}
+
+.btn-geo-natural:hover {
+    background: #ffffff;
+    color: var(--accent-black) !important;
+    border-color: var(--accent-black);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn-geo-natural:hover i {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   6. SIDEBARS, WIDGETS & SEARCH BAR
+   ========================================================================== */
+
+.natural-widget {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-glass);
+}
+
+.natural-widget-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.natural-widget-title i {
+    display: none !important;
+}
+
+.search-box-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 11px 42px 11px 16px;
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.search-input:focus {
+    border-color: var(--accent-black);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+}
+
+.search-icon-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.search-icon-btn:hover {
+    color: var(--accent-black);
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-gray-light);
+    border: 1px solid var(--accent-gray-border);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.search-clear-btn:hover {
+    background: var(--accent-black);
+    color: #ffffff;
+    border-color: var(--accent-black);
+}
+
+.natural-cat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.natural-cat-list li {
+    margin-bottom: 6px;
+}
+
+.natural-cat-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 16px;
+    border-radius: var(--radius-md);
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+}
+
+.natural-cat-list a:hover {
+    background: #f1f5f9;
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+
+.natural-cat-list a.active {
+    background: #f1f5f9;
+    color: var(--accent-black);
+    font-weight: 700;
+    border: 1px solid var(--accent-gray-border);
+}
+
+.metode-tags-container,
+.natural-year-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.natural-year-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.natural-year-tag:hover {
+    background: #f1f5f9;
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.natural-year-tag.active {
+    background: var(--accent-black);
+    color: #ffffff;
+    border-color: var(--accent-black);
+}
+
+/* ==========================================================================
+   7. PAGINATION & LOADERS
+   ========================================================================== */
+
+.fa-spinner,
+.fa-spin {
+    color: var(--accent-black) !important;
+}
+
+.geo-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.geo-page-btn {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.geo-page-btn:hover {
+    border-color: var(--accent-black);
+    color: var(--accent-black);
+    background: #ffffff;
+    transform: translateY(-2px);
+}
+
+.geo-page-btn.active {
+    background: var(--accent-black);
+    color: #ffffff;
+    border-color: var(--accent-black);
+}
+
+/* ==========================================================================
+   8. DETAIL ARTICLE PAGE (BERITA DETAIL)
+   ========================================================================== */
+
+.berita-hero {
+    position: relative;
+    width: 100%;
+    min-height: 460px;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--navbar-height) + 60px) 20px 60px 20px;
+    box-sizing: border-box;
+}
+
+.berita-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.9) 100%);
+    z-index: 1;
+}
+
+.berita-hero-title-container {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
+}
+
+.berita-hero-title {
+    color: #ffffff;
+    font-family: var(--font-news-bold);
+    font-size: 50px; /* Ukuran judul berada dalam kisaran 36px - 48px */
+    font-weight: 900; /* Extra Bold / Black */
+    line-height: 1.3;
+    margin: 0 0 12px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    word-wrap: break-word;
+}
+
+.berita-hero-author {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.berita-content-container {
+    max-width: 1000px;
+    margin: 30px auto 80px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.berita-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.berita-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.berita-meta-item i {
+    color: var(--text-dark);
+}
+
+.text-size-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin: 20px 0 30px 0;
+    padding: 8px 16px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.toolbar-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-text-size {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-text-size:hover {
+    background: var(--accent-black);
+    color: #ffffff;
+    border-color: var(--accent-black);
+}
+
+.berita-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-body);
+    transition: font-size 0.2s ease;
+}
+
+.berita-body p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-indent: 2rem;
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+
+.berita-author-credit {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-indent: 0 !important;
+    margin-top: 30px;
+    text-align: right !important;
+}
+
+.skeleton {
+    background: linear-gradient(110deg, #eceff1 8%, #f5f5f5 18%, #eceff1 33%);
+    border-radius: 4px;
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+    to { background-position-x: -200%; }
+}
+
+.skeleton-text {
+    width: 100%;
+    height: 18px;
+    margin-bottom: 12px;
+}
+
+.author-profile-box {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.author-avatar {
+    width: 70px;
+    height: 70px;
+    background-color: var(--accent-black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+/* Related Content */
+.related-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid var(--bg-surface);
+}
+
+.related-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.related-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 220px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.related-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.related-card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 15%, rgba(15, 23, 42, 0.3) 60%, transparent 100%);
+    padding: 16px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.related-card-title {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+/* Comments Section */
+.comments-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid var(--bg-surface);
+}
+
+.comments-header-box {
+    margin-bottom: 20px;
+}
+
+.comments-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.comment-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+}
+
+.comment-avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-black);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex-grow: 1;
+}
+
+.comment-top-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.comment-author-name {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.comment-timestamp {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.comment-body-text {
+    margin: 0;
+    color: var(--text-body);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Comment Form */
+.comment-form-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+}
+
+.comment-form-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-black);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+.btn-submit-comment {
+    align-self: flex-end;
+    background-color: var(--accent-black);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit-comment:hover {
+    background-color: var(--accent-gray);
+}
+
+/* ==========================================================================
+   9. COMBINED RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .geo-main-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 16px 40px;
+    }
+
+    .geo-header-natural {
+        padding: calc(var(--navbar-height) + 15px) 16px 30px;
+        margin-bottom: 30px;
+    }
+
+    .geofisiana-title,
+    .page-geofisiana .geo-header-natural .seg-title {
+        font-size: 2.3rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .geo-header-natural .seg-title,
+    .geofisiana-title,
+    .page-geofisiana .geo-header-natural .seg-title {
+        font-size: 1.85rem !important;
+        letter-spacing: 0.04em !important;
+        word-spacing: 0.1em !important;
+        text-align: center !important;
+    }
+
+    .geo-header-natural .seg-subtitle {
+        font-size: 0.92rem;
+        text-align: center;
+    }
+
+    .geo-card {
+        padding: 20px;
+        border-radius: var(--radius-md);
+    }
+
+    .geo-card .news-item-title {
+        font-size: 1.2rem;
+    }
+
+    .geo-card .news-image-wrapper {
+        height: 200px;
+    }
+
+    .geo-card .news-excerpt {
+        font-size: 0.9rem;
+        text-indent: 1.8em;
+    }
+
+    .btn-geo-natural {
+        width: 100%;
+        padding: 12px 16px;
+    }
+
+    /* FIX: Penyesuaian Mobile Hero agar tidak terpotong navbar */
+    .berita-hero {
+        padding: calc(var(--navbar-height) + 40px) 16px 50px 16px;
+        min-height: 360px;
+    }
+
+    .berita-hero-title {
+        font-size: 1.8rem;
+        line-height: 1.35;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .berita-content-container {
+        padding: 0 16px;
+        margin-top: 20px;
+    }
+
+    .berita-meta {
+        gap: 12px;
+        font-size: 0.85rem;
+    }
+
+    .text-size-toolbar {
+        justify-content: center;
+        margin: 16px 0 24px 0;
+    }
+
+    .berita-body {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .berita-body p {
+        text-indent: 1.25rem;
+        margin-bottom: 16px;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .related-card {
+        height: 180px;
+    }
+
+    .form-group-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-submit-comment {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .berita-hero {
+        padding-top: calc(var(--navbar-height) + 30px);
+        min-height: 320px;
+    }
+
+    .berita-hero-title {
+        font-size: 1.45rem;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .comment-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .comment-avatar-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .ai-chat-bubble.user {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+    }
+    .ai-chat-bubble.bot {
+    align-self: flex-end; /* Memindahkan bubble jawaban ke kanan */
+    flex-direction: row-reverse; /* (Opsional) Membalik urutan ikon avatar & balon teks agar rapi di kanan */
+    }
+}

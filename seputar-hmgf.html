@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seputar HMGF - HMGF UGM</title>
+
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <!-- Import Font Roboto & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PANGGIL CSS BACKGROUND ACAK -->
+    <link rel="stylesheet" href="css/background.css">
+
+    <!-- CSS Navbar, Footer, Utama & Khusus Geo-Insight -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/geo-insight.css">
+</head>
+<body class="page-seputar-hmgf page-geofisiana">
+
+    <!-- CONTAINER BACKGROUND ACAK -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Container Navbar (Fixed) -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header Section -->
+    <header class="geo-header-natural" style="position: relative; z-index: 1;">
+        <div class="header-container">
+            <h1 class="seg-title geofisiana-title" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.06em !important;">SEPUTAR HMGF</h1>
+            <p class="seg-subtitle">Berita, Program Kerja, dan Informasi Terbaru HMGF UGM</p>
+        </div>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main class="geo-main-grid" style="position: relative; z-index: 1;">
+        <!-- Kolom Utama: Feed Berita / Arsip -->
+        <section>
+            <div class="news-feed" id="newsFeed">
+                <!-- Skeleton Loader -->
+                <div class="skeleton-feed" style="text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; color: #000000;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: #000000;"></i>
+                    <p style="margin-top: 12px; font-weight: 500;">Memuat Berita Seputar HMGF...</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Halaman / Pagination Dinamis -->
+            <div class="geo-pagination" id="paginationContainer" style="display: none;"></div>
+        </section>
+
+        <!-- Sidebar Kanan -->
+        <aside>
+            <!-- Widget Mesin Pencari -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Cari Judul Artikel</span>
+                </div>
+                <div class="search-box-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Ketik kata kunci judul..." onkeyup="handleSearchInput(event)">
+                    <button id="searchBtn" class="search-icon-btn" onclick="clearSearchInput()">
+                        <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Widget Kategori Lainnya -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Kategori lainnya</span>
+                </div>
+                <ul class="natural-cat-list">
+                    <li><a href="seputar-hmgf.html" class="active">Seputar HMGF <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="seg-news.html">SEG News <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="metode-geofisika.html">Metode Geofisika <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="majalah-spektral.html">Majalah Spektral <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geofisiana.html">Geofisiana <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geolibrary.html">Geolibrary <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="penelitian.html">Penelitian <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Widget Filter Divisi / Penulis -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Filter Divisi / Penulis</span>
+                </div>
+                <div style="margin-top: 10px;">
+                    <select id="divisiFilter" class="search-input" onchange="filterByDivisi(this.value)" style="width: 100%; border-radius: 8px; font-family: inherit; font-size: 0.9rem; padding: 12px; cursor: pointer;">
+                        <option value="ALL">Semua Divisi</option>
+                        <option value="PENGURUS INTI">Pengurus Inti</option>
+                        <option value="DEPARTEMEN PSDM">Departemen PSDM</option>
+                        <option value="DEPARTEMEN MINKAT">Departemen Minkat</option>
+                        <option value="DEPARTEMEN HUMAS">Departemen Humas</option>
+                        <option value="DEPARTEMEN INTERNAL">Departemen Internal</option>
+                        <option value="DEPARTEMEN MEDINFO">Departemen Medinfo</option>
+                        <option value="DEPARTEMEN AKADEMIK">Departemen Akademik</option>
+                        <option value="DEPARTEMEN KEWIRAUSAHAAN">Departemen Kewirausahaan</option>
+                        <option value="DEPARTEMEN SOSMAS">Departemen Sosmas</option>
+                        <option value="SEG UGM-SC">SEG UGM-SC</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Widget Filter Tahun Arsip -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Tahun Arsip</span>
+                </div>
+                <div class="natural-year-grid" id="yearTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByYear('ALL')">Semua Tahun</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Container Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script Utama (Mengandung API Config & Helper Functions) -->
+    <script src="js/insight.js"></script>
+    <script src="js/navbar.js"></script>
+
+    <!-- KHUSUS LOGIKA RENDERING & FILTER SEPUTAR HMGF -->
+    <script>
+        // Variabel Status HMGF
+        const ITEMS_PER_PAGE = 5;
+        let allHMGFArticles = [];
+        let activeFilteredArticles = [];
+        
+        let selectedDivisi = 'ALL';
+        let selectedYear = 'ALL';
+        let searchQuery = '';
+        let currentPage = 1;
+
+        // Memuat Navbar & Footer Secara Dinamis
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveMenu();
+                if (typeof initNavbarScroll === 'function') initNavbarScroll();
+            })
+            .catch(err => console.error('Gagal memuat navbar:', err));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+            .catch(err => console.error('Gagal memuat footer:', err));
+
+        function highlightActiveMenu() {
+            const navbar = document.getElementById('navbar-placeholder');
+            if (!navbar) return;
+            navbar.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+            const currentLink = navbar.querySelector('a[href*="seputar-hmgf.html"]');
+            
+            if (currentLink) {
+                currentLink.classList.add('active');
+                const parentNavItem = currentLink.closest('.nav-item');
+                if (parentNavItem) {
+                    const parentLink = parentNavItem.querySelector('.nav-link');
+                    if (parentLink) parentLink.classList.add('active');
+                }
+            }
+        }
+
+        // ==========================================================================
+        // LOGIKA MEMUAT DAN FILTER SEPUTAR HMGF
+        // ==========================================================================
+        async function loadHMGFArticles() {
+            const feedContainer = document.getElementById('newsFeed');
+            try {
+                // Menggunakan fungsi fetchSheetData & SHEET_HMGF dari insight.js
+                const rawArticles = await fetchSheetData(SHEET_HMGF);
+
+                if (!Array.isArray(rawArticles)) {
+                    throw new Error("Data yang diterima bukan array.");
+                }
+
+                allHMGFArticles = rawArticles
+                    .filter(item => item && isPublished(getPublishedValue(item)))
+                    .map(article => {
+                        const normalized = normalizeArticleData(article, SHEET_HMGF);
+                        if (!normalized) return null;
+
+                        const yearMatch = (normalized.tanggal || '').match(/\b(20\d{2}|19\d{2})\b/);
+                        const parsedYear = yearMatch ? yearMatch[0] : '';
+
+                        return {
+                            ...normalized,
+                            gambar_hero: formatDriveUrl(normalized.gambar_hero),
+                            tahun: normalized.tahunArsip ? String(normalized.tahunArsip) : parsedYear
+                        };
+                    })
+                    .filter(Boolean);
+
+                renderYearTags();
+                applyFilters();
+
+            } catch (error) {
+                console.error("Gagal memuat arsip Seputar HMGF:", error);
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; background: #ffffff; border-radius: 12px; border: 1px solid #fee2e2; color: #ef4444;">
+                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                            <p style="margin-top: 10px; font-weight: 500;">Gagal memuat arsip Seputar HMGF. Silakan coba beberapa saat lagi.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Handlers Sidebar Filter
+        function handleSearchInput(event) {
+            searchQuery = normalizeTitle(event.target.value);
+            const iconEl = document.getElementById('searchIcon');
+            const btnEl = document.getElementById('searchBtn');
+
+            if (searchQuery.length > 0) {
+                if (iconEl) iconEl.className = "fa-solid fa-xmark";
+                if (btnEl) {
+                    btnEl.classList.add("search-clear-btn");
+                    btnEl.classList.remove("search-icon-btn");
+                }
+            } else {
+                if (iconEl) iconEl.className = "fa-solid fa-magnifying-glass";
+                if (btnEl) {
+                    btnEl.classList.add("search-icon-btn");
+                    btnEl.classList.remove("search-clear-btn");
+                }
+            }
+            applyFilters();
+        }
+
+        function clearSearchInput() {
+            const inputEl = document.getElementById('searchInput');
+            if (inputEl && inputEl.value !== '') {
+                inputEl.value = '';
+                searchQuery = '';
+                handleSearchInput({ target: inputEl });
+            }
+        }
+
+        function filterByDivisi(divisi) {
+            selectedDivisi = divisi;
+            applyFilters();
+        }
+
+        function renderYearTags() {
+            const container = document.getElementById('yearTagsContainer');
+            if (!container) return;
+
+            container.innerHTML = '<span class="natural-year-tag active" onclick="filterByYear(\'ALL\')">Semua Tahun</span>';
+            const years = [...new Set(allHMGFArticles.map(a => a.tahun).filter(Boolean))].sort((a, b) => b - a);
+
+            years.forEach(year => {
+                const tag = document.createElement('span');
+                tag.className = 'natural-year-tag';
+                tag.innerText = year;
+                tag.onclick = () => filterByYear(year);
+                container.appendChild(tag);
+            });
+        }
+
+        function filterByYear(year) {
+            selectedYear = year;
+            const tags = document.querySelectorAll('#yearTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                if (tag.innerText.trim() === String(year) || (year === 'ALL' && tag.innerText.trim() === 'Semua Tahun')) {
+                    tag.classList.add('active');
+                } else { 
+                    tag.classList.remove('active'); 
+                }
+            });
+            applyFilters();
+        }
+
+        function applyFilters() {
+            activeFilteredArticles = allHMGFArticles.filter(item => {
+                if (!item) return false;
+                const normJudul = normalizeTitle(item.judul);
+                const normPenulis = normalizeTitle(item.penulis);
+
+                const matchSearch = !searchQuery || normJudul.includes(searchQuery) || normPenulis.includes(searchQuery);
+                
+                let matchDivisi = true;
+                if (selectedDivisi !== 'ALL') {
+                    matchDivisi = normPenulis.includes(selectedDivisi.toLowerCase());
+                }
+
+                const matchYear = (selectedYear === 'ALL') || (String(item.tahun) === String(selectedYear));
+
+                return matchSearch && matchDivisi && matchYear;
+            });
+
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+
+            if (activeFilteredArticles.length === 0) {
+                feedContainer.innerHTML = `
+                    <div style="text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.8); border-radius: 18px; border: 1px dashed #000000; color: #000000;">
+                        <i class="fa-solid fa-folder-open" style="font-size: 2.2rem; margin-bottom: 12px; color: #000000;"></i>
+                        <h3 style="font-size: 1.05rem; font-weight: 700; color: #000000; margin: 0;">Konten Tidak Ditemukan</h3>
+                        <p style="font-size: 0.88rem; margin-top: 4px;">Tidak ada berita yang cocok dengan filter yang Anda pilih.</p>
+                    </div>
+                `;
+                const pagContainer = document.getElementById('paginationContainer');
+                if (pagContainer) pagContainer.style.display = 'none';
+                return;
+            }
+
+            renderPage(1);
+            setupPagination();
+        }
+
+        function renderPage(pageNumber) {
+            currentPage = pageNumber;
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+            feedContainer.innerHTML = '';
+
+            const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const pageArticles = activeFilteredArticles.slice(startIndex, endIndex);
+
+            pageArticles.forEach(item => {
+                const encodedTitle = encodeURIComponent((item.judul || '').trim());
+                const detailUrl = `berita-insight.html?judul=${encodedTitle}`;
+                const imageSrc = formatDriveUrl(item.gambar_hero);
+                const cleanExcerpt = (item.isi_1 || '').replace(/#+\s*/g, '').substring(0, 500) + '...';
+
+                feedContainer.innerHTML += `
+                    <article class="news-item geo-card">
+                        <h2 class="news-item-title">${item.judul || 'Tanpa Judul'}</h2>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-calendar-days"></i> ${item.tanggal || '-'}</span>
+                            <span class="news-meta-divider">•</span>
+                            <span><i class="fa-solid fa-folder-open"></i> ${item.kategoriUtama || 'Penelitian'}</span>
+                        </div>
+                        <div class="news-image-wrapper">
+                            <img src="${imageSrc}" alt="${item.judul}" class="news-image" onerror="this.onerror=null;this.src='assets/SEG_News/pantai.png';">
+                        </div>
+                        <p class="news-excerpt">${cleanExcerpt}</p>
+                        <div class="btn-selengkapnya-container">
+                            <a href="${detailUrl}" class="btn-geo-natural">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            });
+
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+
+        function setupPagination() {
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (!paginationContainer) return;
+
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(activeFilteredArticles.length / ITEMS_PER_PAGE);
+            if (totalPages <= 1) {
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            paginationContainer.style.display = 'flex';
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `geo-page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    renderPage(i);
+                    updateActiveBtn(i);
+                };
+                paginationContainer.appendChild(btn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'geo-page-btn';
+            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    renderPage(currentPage + 1);
+                    updateActiveBtn(currentPage + 1);
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function updateActiveBtn(activePage) {
+            const buttons = document.querySelectorAll('.geo-page-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx + 1 === activePage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadHMGFArticles();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+:root {
+    /* Color Palette - Dark Glass Theme */
+    --nav-bg-glass: rgba(5, 7, 15, 0.88);
+    --nav-border-glass: rgba(255, 255, 255, 0.1);
+    --nav-shadow-glass: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+    
+    /* Typography */
+    --nav-text-primary: #e5e7eb;
+    --nav-text-muted: #9ca3af;
+    
+    /* Neon Red / Pink Accent Palette */
+    --nav-rose-base: #be185d;
+    --nav-rose-active-bg: rgba(244, 63, 94, 0.15);
+    --nav-rose-hover-bg: rgba(255, 255, 255, 0.05);
+    --nav-accent: #f43f5e;                          
+    --nav-accent-glow: rgba(244, 63, 94, 0.5);      
+    
+    /* Dimensions */
+    --nav-height: 72px;
+}
+
+/* Menjaga agar konten halaman tidak terpotong navbar */
+body {
+    padding-top: var(--nav-height);
+}
+
+/* ----------------------------------------------------
+   1. Base Navbar Wrapper
+---------------------------------------------------- */
+.navbar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: var(--nav-bg-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--nav-border-glass);
+    box-shadow: var(--nav-shadow-glass);
+    z-index: 9999;
+    
+    /* Smooth Transition Scroll */
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+}
+
+.navbar-wrapper.nav-hidden {
+    transform: translateY(-100%);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ----------------------------------------------------
+   2. Brand Logo & Title
+---------------------------------------------------- */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    width: max-content; 
+    max-width: 50%;
+    flex-shrink: 0;
+    z-index: 100; 
+}
+
+.nav-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+
+.brand-subtitle,
+.brand-univ {
+    font-size: 0.68rem;
+    color: var(--nav-text-muted);
+    font-weight: 400;
+}
+
+/* ----------------------------------------------------
+   3. Navigation Menu (Desktop)
+---------------------------------------------------- */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    font-size: 0.90rem;
+    font-weight: 500;
+    color: var(--nav-text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-link i,
+.nav-link svg {
+    display: none !important;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background-color: var(--nav-rose-hover-bg);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--nav-accent);
+    border-radius: 99px;
+    box-shadow: 0 0 10px var(--nav-accent-glow);
+    transition: width 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.nav-link:hover::after {
+    width: 40%;
+    opacity: 0.6;
+}
+
+.nav-link.active {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 70% !important;
+    opacity: 1 !important;
+}
+
+/* ----------------------------------------------------
+   4. Dropdown Menu (Desktop)
+---------------------------------------------------- */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px); /* Ada jarak 8px dari navbar */
+    left: 0;
+    min-width: 220px;
+    background: #090c15;
+    border: 1px solid var(--nav-border-glass);
+    border-radius: 12px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    padding: 6px;
+    list-style: none;
+    overflow: visible; /* Diubah agar jembatan tidak terpotong */
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; 
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 10000;
+}
+
+/* JEMBATAN TRANSPARAN: Menjaga hover saat kursor melewati celah 8px */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -15px; /* Menutupi area kosong di atas dropdown */
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+}
+
+@media (min-width: 993px) {
+    .nav-item:hover .dropdown-menu,
+    .nav-item:focus-within .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto; 
+        transform: translateY(0);
+    }
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: var(--nav-text-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--nav-rose-hover-bg);
+    color: #ffffff;
+}
+
+.dropdown-menu a.active {
+    color: #ffffff !important;
+    font-weight: 600;
+    background: var(--nav-rose-active-bg) !important;
+}
+
+.dropdown-menu a.active::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 20%;
+    height: 60%;
+    width: 3.5px;
+    background: var(--nav-accent);
+    border-radius: 99px;
+    box-shadow: 0 0 10px var(--nav-accent-glow);
+}
+
+/* ----------------------------------------------------
+   5. Action Button (Kontak)
+---------------------------------------------------- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    z-index: 101; 
+}
+
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 22px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn-contact:hover {
+    color: #ffffff;
+    background: var(--nav-rose-base);
+    border-color: var(--nav-accent);
+    box-shadow: 0 4px 18px rgba(190, 24, 93, 0.45);
+    transform: translateY(-1px);
+}
+
+/* ----------------------------------------------------
+   6. Mobile Toggle Button
+---------------------------------------------------- */
+.mobile-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--nav-border-glass);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--nav-text-primary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 105; 
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:focus {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ----------------------------------------------------
+   7. Mobile & Tablet Responsiveness (<= 992px)
+---------------------------------------------------- */
+@media (max-width: 992px) {
+    .navbar-container {
+        padding: 0 24px;
+    }
+
+    .mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+        margin-right: 14px;
+    }
+
+    .btn-contact {
+        padding: 6px 16px;
+        font-size: 0.82rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        max-height: calc(100vh - var(--nav-height));
+        overflow-y: auto;
+        background: rgba(8, 11, 20, 0.96);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--nav-border-glass);
+        
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 24px 28px 24px;
+        gap: 8px;
+        
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none; 
+        transform: translateY(-12px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+        z-index: 99;
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto; 
+        transform: translateY(0);
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 8px;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    /* 👇 BAGIAN INI SUDAH SAYA PERBAIKI TOTAL 👇 */
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        
+        /* WAJIB INHERIT: Jangan pernah diubah ke visible / auto */
+        visibility: inherit; 
+        pointer-events: inherit; 
+        
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--nav-accent);
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 0 8px 8px 0;
+        margin: 6px 0 8px 12px;
+        padding: 4px 8px;
+        width: calc(100% - 12px);
+    }
+    
+    .dropdown-menu::before {
+        display: none; /* Hilangkan jembatan di mode mobile */
+    }
+    /* 👆 ------------------------------------- 👆 */
+
+    .dropdown-menu a {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+    }
+}
+
+/* ----------------------------------------------------
+   8. Extra Small Screen Optimization (<= 480px)
+---------------------------------------------------- */
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 20px;
+        gap: 8px; 
+    }
+
+    .brand-subtitle,
+    .brand-univ {
+        display: none;
+    }
+
+    .brand-title {
+        font-size: 0.92rem;
+    }
+
+    .nav-logo {
+        height: 32px;
+    }
+
+    .nav-actions {
+        margin-right: 10px;
+    }
+
+    .btn-contact {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+    }
+
+    .nav-menu {
+        padding: 16px 20px 24px 20px;
+    }
+}

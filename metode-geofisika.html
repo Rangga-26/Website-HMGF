@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Geofisika - HMGF UGM</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+
+    <!-- Import Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN (Untuk Icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Background -->
+    <link rel="stylesheet" href="css/background.css">
+
+    <!-- Design System GEO-INSIGHT -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/geo-insight.css">
+</head>
+<body class="page-metode-geofisika page-geofisiana">
+
+    <!-- CONTAINER BACKGROUND ACAK -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Placeholder Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header Section -->
+    <header class="geo-header-natural" style="position: relative; z-index: 1;">
+        <div class="header-container">
+            <h1 class="seg-title geofisiana-title" style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important; letter-spacing: 0.06em !important;">METODE GEOFISIKA</h1>
+            <p class="seg-subtitle">Eksplorasi penerapannya dalam riset dan dinamika kebumian</p>
+        </div>
+    </header>
+
+    <main class="geo-main-grid" style="position: relative; z-index: 1;">
+        <!-- Kolom Utama: Feed Berita -->
+        <section>
+            <div class="news-feed" id="newsFeed">
+                <!-- Skeleton Loader saat memuat data -->
+                <div class="skeleton-feed" style="text-align: center; padding: 40px; color: var(--text-dim); background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: #000000;"></i>
+                    <p style="margin-top: 10px; font-weight: 500; color: #000000;">Memuat & Menganalisis Metode Geofisika...</p>
+                </div>
+            </div>
+
+            <!-- Navigasi Halaman / Pagination Dinamis -->
+            <div class="geo-pagination" id="paginationContainer" style="display: none;"></div>
+        </section>
+
+        <!-- Sidebar Kanan: Mesin Pencari, Kategori Lainnya, Sub-Filter Metode, & Tahun Arsip -->
+        <aside>
+            <!-- Widget Mesin Pencari Judul Artikel -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Cari Judul Artikel</span>
+                </div>
+                <div class="search-box-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Ketik judul artikel..." onkeyup="handleSearchInput(event)">
+                    <button id="searchBtn" class="search-icon-btn" onclick="clearSearchInput()">
+                        <i id="searchIcon" class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Widget Kategori Lainnya -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Kategori lainnya</span>
+                </div>
+                <ul class="natural-cat-list">
+                    <li><a href="seputar-hmgf.html">Seputar HMGF <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="seg-news.html">SEG News <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="metode-geofisika.html" class="active">Metode Geofisika <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="majalah-spektral.html">Majalah Spektral <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geofisiana.html">Geofisiana <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="geolibrary.html">Geolibrary <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                    <li><a href="penelitian.html">Penelitian <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem; opacity: 0.5;"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Kotak Filter Sub-Metode Geofisika -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Filter Metode</span>
+                </div>
+                <div class="metode-tags-container" id="metodeTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByMetode('ALL')"><i class="fa-solid fa-border-all" style="font-size: 0.75rem; margin-right: 4px;"></i> SEMUA METODE</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('ERT')">ERT</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('GRAVITY')">GRAVITY</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('GPS')">GPS</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('MAGNETIK')">MAGNETIK</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('MIKROSEISMIK')">MIKROSEISMIK</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('REFRAKSI')">REFRAKSI</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('VES')">VES</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('VLF')">VLF</span>
+                    <span class="natural-year-tag" onclick="filterByMetode('GPR')">GPR</span>
+                </div>
+            </div>
+
+            <!-- Kotak Filter Tahun Arsip -->
+            <div class="natural-widget">
+                <div class="natural-widget-title">
+                    <span>Tahun Arsip</span>
+                </div>
+                <div class="natural-year-grid" id="yearTagsContainer">
+                    <span class="natural-year-tag active" onclick="filterByYear('ALL')">Semua Tahun</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Placeholder Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="js/navbar.js"></script>
+
+    <!-- CORE SCRIPT (Panggil Insight JS & Halaman Metode Geofisika Logic) -->
+    <script src="js/insight.js"></script>
+    <script>
+        // ==========================================================================
+        // INIT NAVBAR & FOOTER
+        // ==========================================================================
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveNav();
+            });
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('footer-placeholder').innerHTML = data; });
+
+        function highlightActiveNav() {
+            document.querySelectorAll('#navbar-placeholder .active').forEach(el => el.classList.remove('active'));
+            const navLinks = document.querySelectorAll('#navbar-placeholder a');
+            const currentPath = window.location.pathname.split('/').pop() || 'metode-geofisika.html';
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') && link.getAttribute('href').includes(currentPath)) {
+                    link.classList.add('active');
+                    const parentNavItem = link.closest('.nav-item');
+                    if (parentNavItem) {
+                        parentNavItem.classList.add('active');
+                        const parentNavLink = parentNavItem.querySelector('.nav-link');
+                        if (parentNavLink) parentNavLink.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // ==========================================================================
+        // LOGIKA KHUSUS HALAMAN METODE GEOFISIKA
+        // ==========================================================================
+        const ITEMS_PER_PAGE = 5;
+        let allMetodeArticles = [];      
+        let activeFilteredArticles = []; 
+        let selectedMetode = 'ALL';
+        let selectedYear = 'ALL';
+        let searchQuery = '';
+        let currentPage = 1;
+
+        const METODE_DICTIONARY = {
+            'ERT': ['ert', 'resistivity tomography', 'geolistrik ert', 'resistivitas 2d', 'multichannel resistivity'],
+            'GRAVITY': ['gravity', 'gaya berat', 'gravitasi', 'bouguer', 'anomali gaya berat'],
+            'GPS': ['gps', 'gnss', 'geodetic gps', 'geodesi', 'posisi satelit'],
+            'MAGNETIK': ['magnetik', 'geomagnetik', 'anomali magnetik', 'magnetometer', 'kemagnetan'],
+            'MIKROSEISMIK': ['mikroseismik', 'microseismic', 'hvsr', 'gelombang mikroseismik', 'vibrasi ambient'],
+            'REFRAKSI': ['refraksi', 'seismik refraksi', 'refraction', 'gelombang bias', 'p-wave velocity'],
+            'VES': ['ves', 'vertical electrical sounding', 'geolistrik 1d', 'resistivitas ves', 'schlumberger'],
+            'VLF': ['vlf', 'very low frequency', 'vlf-em', 'elektromagnetik vlf'],
+            'GPR': ['gpr', 'ground penetrating radar', 'radar kebumian', 'georadar', 'gelombang elektromagnetik radar']
+        };
+
+        function extractMetodeYear(dateString) {
+            if (!dateString) return null;
+            const match = String(dateString).match(/\b(20\d{2}|19\d{2})\b/);
+            return match ? match[0] : null;
+        }
+
+        function classifyArticleMetode(article) {
+            const fullContent = `
+                ${article.judul || ''} 
+                ${article.kategoriUtama || article.kategori || ''} 
+                ${article.isi_1 || ''} 
+                ${article.isi_2 || ''} 
+            `.toLowerCase();
+
+            const detectedMetode = [];
+            for (const [metodeKey, keywords] of Object.entries(METODE_DICTIONARY)) {
+                if (keywords.some(kw => fullContent.includes(kw))) {
+                    detectedMetode.push(metodeKey);
+                }
+            }
+            return detectedMetode;
+        }
+
+        async function loadMetodeGeofisikaArticles() {
+            const feedContainer = document.getElementById('newsFeed');
+            try {
+                const [rawHMGF, rawSEG] = await Promise.all([
+                    fetchSheetData(SHEET_HMGF).catch(() => []),
+                    fetchSheetData(SHEET_SEG).catch(() => [])
+                ]);
+
+                const combinedData = [
+                    ...(Array.isArray(rawHMGF) ? rawHMGF : []),
+                    ...(Array.isArray(rawSEG) ? rawSEG : [])
+                ].map(item => normalizeArticleData(item, ''));
+
+                const rawMetodeArticles = combinedData.filter(item => {
+                    if (!item || !item.judul) return false;
+                    const cat = (item.kategoriUtama || item.kategori || '').toLowerCase();
+                    if (!cat || cat.trim() === '') return false;
+                    
+                    const isMetodeCategory = cat.includes('metode geofisika');
+                    return isMetodeCategory && isPublished(item.published);
+                });
+
+                allMetodeArticles = rawMetodeArticles.map(article => {
+                    return {
+                        ...article,
+                        gambar_hero: formatDriveUrl(article.gambar_hero),
+                        detected_metode: classifyArticleMetode(article),
+                        extracted_year: extractMetodeYear(article.tanggal)
+                    };
+                });
+
+                renderYearTags();
+                applyCombinedFilters();
+
+            } catch (error) {
+                console.error("Gagal memuat artikel Metode Geofisika:", error);
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #ef4444; background: #ffffff; border-radius: 12px; border: 1px solid #fee2e2;">
+                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                            <p style="margin-top: 10px;">Gagal memuat artikel. Silakan periksa koneksi Anda.</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function handleSearchInput(event) {
+            searchQuery = normalizeTitle(event.target.value);
+            const iconEl = document.getElementById('searchIcon');
+            const btnEl = document.getElementById('searchBtn');
+
+            if (searchQuery.length > 0) {
+                if (iconEl) iconEl.className = "fa-solid fa-xmark";
+                if (btnEl) {
+                    btnEl.classList.add("search-clear-btn");
+                    btnEl.classList.remove("search-icon-btn");
+                }
+            } else {
+                if (iconEl) iconEl.className = "fa-solid fa-magnifying-glass";
+                if (btnEl) {
+                    btnEl.classList.add("search-icon-btn");
+                    btnEl.classList.remove("search-clear-btn");
+                }
+            }
+            applyCombinedFilters();
+        }
+
+        function clearSearchInput() {
+            const inputEl = document.getElementById('searchInput');
+            if (inputEl && inputEl.value !== '') {
+                inputEl.value = '';
+                searchQuery = '';
+                handleSearchInput({ target: inputEl });
+            }
+        }
+
+        function renderYearTags() {
+            const container = document.getElementById('yearTagsContainer');
+            if (!container) return;
+
+            container.innerHTML = '<span class="natural-year-tag active" onclick="filterByYear(\'ALL\')">Semua Tahun</span>';
+            const years = [...new Set(allMetodeArticles.map(a => a.extracted_year).filter(Boolean))].sort((a, b) => b - a);
+
+            years.forEach(year => {
+                const tag = document.createElement('span');
+                tag.className = 'natural-year-tag';
+                tag.innerText = year;
+                tag.onclick = () => filterByYear(year);
+                container.appendChild(tag);
+            });
+        }
+
+        function filterByMetode(metodeName) {
+            selectedMetode = metodeName;
+            const tags = document.querySelectorAll('#metodeTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                const tagText = tag.innerText.replace(/[\r\n\t]/g, '').trim();
+                if (tagText.includes(metodeName) || (metodeName === 'ALL' && tagText.includes('SEMUA METODE'))) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyCombinedFilters();
+        }
+
+        function filterByYear(year) {
+            selectedYear = year;
+            const tags = document.querySelectorAll('#yearTagsContainer .natural-year-tag');
+            tags.forEach(tag => {
+                if (tag.innerText.trim() === String(year) || (year === 'ALL' && tag.innerText.trim() === 'Semua Tahun')) {
+                    tag.classList.add('active');
+                } else { tag.classList.remove('active'); }
+            });
+            applyCombinedFilters();
+        }
+
+        function applyCombinedFilters() {
+            activeFilteredArticles = allMetodeArticles.filter(item => {
+                const normTitle = normalizeTitle(item.judul);
+                const matchTitle = !searchQuery || normTitle.includes(searchQuery);
+                const matchMetode = (selectedMetode === 'ALL') || (item.detected_metode && item.detected_metode.includes(selectedMetode));
+                const matchYear = (selectedYear === 'ALL') || (String(item.extracted_year) === String(selectedYear));
+                
+                return matchTitle && matchMetode && matchYear;
+            });
+
+            const feedContainer = document.getElementById('newsFeed');
+
+            if (activeFilteredArticles.length === 0) {
+                if (feedContainer) {
+                    feedContainer.innerHTML = `
+                        <div style="text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.7); border-radius: 18px; border: 1px dashed #000000; color: #000000;">
+                            <i class="fa-solid fa-filter-circle-xmark" style="font-size: 2.2rem; color: #000000; margin-bottom: 12px;"></i>
+                            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">Metode Tidak Ditemukan</h3>
+                            <p style="font-size: 0.88rem; margin-top: 5px;">Silakan sesuaikan kata kunci pencarian, pilihan metode, atau tahun arsip Anda.</p>
+                        </div>
+                    `;
+                }
+                const pagEl = document.getElementById('paginationContainer');
+                if (pagEl) pagEl.style.display = 'none';
+                return;
+            }
+
+            renderPage(1);
+            setupPagination();
+        }
+
+        function renderPage(pageNumber) {
+            currentPage = pageNumber;
+            const feedContainer = document.getElementById('newsFeed');
+            if (!feedContainer) return;
+
+            feedContainer.innerHTML = '';
+            const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const pageArticles = activeFilteredArticles.slice(startIndex, endIndex);
+
+            pageArticles.forEach(item => {
+                const encodedTitle = encodeURIComponent((item.judul || '').trim());
+                const detailUrl = `berita-insight.html?judul=${encodedTitle}`;
+                
+                let badgesHtml = '';
+                if (item.detected_metode && item.detected_metode.length > 0) {
+                    item.detected_metode.forEach(m => {
+                        badgesHtml += `<span class="metode-badge" style="background: #000000; color: #ffffff; font-weight: 700; border: 1px solid #000000; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem;"><i class="fa-solid fa-tag" style="font-size: 0.65rem; margin-right: 4px;"></i> ${m}</span>`;
+                    });
+                }
+
+                const safeIsi = item.isi_1 ? item.isi_1.substring(0, 500) + '...' : '';
+
+                feedContainer.innerHTML += `
+                    <article class="geo-card news-item">
+                        <h2 class="news-item-title">${item.judul || 'Tanpa Judul'}</h2>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-calendar-days"></i> ${item.tanggal || '-'}</span>
+                            <span class="news-meta-divider">•</span>
+                            <span><i class="fa-solid fa-folder-open"></i> ${item.kategoriUtama || item.kategori || 'Metode Geofisika'}</span>
+                        </div>
+                        <div style="margin-top: 6px; margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            ${badgesHtml}
+                        </div>
+                        <div class="news-image-wrapper">
+                            <img src="${item.gambar_hero}" alt="${item.judul}" class="news-image" onerror="this.onerror=null;this.src='assets/SEG_News/pantai.png';">
+                        </div>
+                        <p class="news-excerpt">
+                            ${safeIsi}
+                        </p>
+                        <div class="btn-selengkapnya-container" style="margin-top: 16px;">
+                            <a href="${detailUrl}" class="btn-geo-natural">
+                                Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            });
+
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function updateActiveBtn(activePage) {
+            const buttons = document.querySelectorAll('.geo-page-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx + 1 === activePage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function setupPagination() {
+            const paginationContainer = document.getElementById('paginationContainer');
+            if (!paginationContainer) return;
+
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(activeFilteredArticles.length / ITEMS_PER_PAGE);
+
+            if (totalPages <= 1) {
+                paginationContainer.style.display = 'none';
+                return;
+            }
+
+            paginationContainer.style.display = 'flex';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `geo-page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    updateActiveBtn(i);
+                    renderPage(i);
+                };
+                paginationContainer.appendChild(btn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'geo-page-btn';
+            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    const nextPageNum = currentPage + 1;
+                    updateActiveBtn(nextPageNum);
+                    renderPage(nextPageNum);
+                }
+            };
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadMetodeGeofisikaArticles();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import { getArticles, escapeHtml, type Source } from "../lib/data";
+const source = Astro.url.searchParams.get("source") as Source | null;
+const query = (Astro.url.searchParams.get("q") || "").trim().toLowerCase();
+const page = Math.max(1, Number(Astro.url.searchParams.get("page") || "1"));
+const all = await getArticles(Astro.locals.runtime.env, source || undefined);
+const filtered = all.filter(article => !query || `${article.title} ${article.author} ${article.category} ${article.course}`.toLowerCase().includes(query));
+const pageSize = 5; const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize)); const currentPage = Math.min(page, totalPages); const visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+const params = (nextPage: number) => `?${new URLSearchParams({ ...(source ? { source } : {}), ...(query ? { q: query } : {}), page: String(nextPage) })}`;
+---
+<Base title="HMGF UGM | Arsip">
+  <main>
+    <section class="hero"><p class="eyebrow">Himpunan Mahasiswa</p><h1>GEOFISIKA<br /><span>UGM</span></h1><p>Tinggi Prestasi Tampak Membumi</p></section>
+    <section class="content" id="arsip"><p class="eyebrow">Arsip terbit</p><h2>Kabar HMGF UGM</h2>
+      <form class="filters" method="get"><input name="q" value={query} placeholder="Cari judul, penulis, mata kuliah..." aria-label="Cari artikel" /><select name="source" aria-label="Pilih sumber"><option value="">Semua sumber</option>{["Seputar HMGF", "SEG News", "Geolibrary"].map(item => <option value={item} selected={source === item}>{item}</option>)}</select><button type="submit">Cari</button></form>
+      <div class="article-grid">{visible.map(article => <article class="article-card"><div class="article-card-body"><small>{article.source} · {article.date}</small><h3>{article.title}</h3><p>{article.paragraphs[0]?.slice(0, 180) || "Baca informasi lengkap dari HMGF UGM."}</p><a href={`/news/${article.slug}`}>Baca selengkapnya →</a></div></article>)}</div>
+      {visible.length === 0 && <p class="muted">Tidak ada artikel yang cocok.</p>}
+      <nav class="pagination" aria-label="Pagination">{Array.from({ length: totalPages }, (_, index) => <a class:list-active={index + 1 === currentPage} href={params(index + 1)}>{index + 1}</a>)}</nav>
+    </section>
+    <section class="content compact"><h2>GeoBot AI</h2><form method="post" action="/api/chat" class="chat-form"><label for="message">Tanyakan sesuatu</label><textarea id="message" name="message" required maxlength="4000"></textarea><button type="submit">Kirim ke GeoBot</button></form><p class="muted">Respons diproses server-side melalui endpoint aman.</p></section>
+  </main>
+</Base>

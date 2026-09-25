@@ -1,0 +1,626 @@
+/* ==========================================================================
+   HMGF & SEG TIMELINE PAGE STYLES
+   ========================================================================== */
+
+/* Main Page Layout */
+.timeline-page-container {
+    max-width: 1200px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.main-page-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.15;
+    margin-bottom: 12px;
+}
+
+.main-page-title .title-top {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.main-page-title .title-bottom {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    background: linear-gradient(135deg, #E13062 0%, #FDD08F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main-page-subtitle {
+    font-size: 1.05rem;
+    color: #ffffff;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Timeline Block Card */
+.timeline-block {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    margin-bottom: 40px;
+}
+
+/* Header Section & Brand Badges */
+.timeline-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.timeline-brand-badges {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.timeline-title-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.timeline-section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* Toolbar Controls */
+.timeline-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #f8fafc;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.month-navigator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-nav-month {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.btn-nav-month:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.current-month-display {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    min-width: 150px;
+    text-align: center;
+}
+
+/* Dual Filter Controls */
+.filter-group-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    display: block;
+}
+
+/* Sembunyikan ikon di filter label */
+.filter-label i,
+.filter-label svg {
+    display: none !important;
+}
+
+.select-filter-pill {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.select-filter-pill:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Grid Kalender */
+.calendar-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.calendar-header-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #0f172a;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.day-name {
+    padding: 12px 4px;
+}
+
+.calendar-body-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-left: 1px solid #e2e8f0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.calendar-day-cell {
+    min-height: 115px;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 8px;
+    background: #ffffff;
+    position: relative;
+    transition: background 0.2s ease;
+    overflow: hidden; 
+}
+
+.calendar-day-cell.other-month {
+    background: #f8fafc;
+    opacity: 0.45;
+}
+
+.calendar-day-cell.today {
+    background: #eff6ff;
+}
+
+.day-number {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.calendar-day-cell.today .day-number {
+    background: #2563eb;
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Events List & Badges Inside Grid Cell */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.event-badge {
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 4px 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 1.25;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.15s ease, filter 0.2s ease;
+    
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-badge:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+.badge-entity {
+    font-weight: 800;
+    opacity: 0.9;
+    margin-right: 3px;
+}
+
+/* Legend Section */
+.legend-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.legend-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.legend-title i,
+.legend-title svg {
+    display: none !important;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.legend-color-box {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Event Detail Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    max-width: 520px;
+    width: 100%;
+    padding: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: modalScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes modalScaleUp {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.modal-header-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.modal-entity-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-entity-tag.tag-hmgf {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+.modal-entity-tag.tag-seg {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.modal-divisi-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.modal-event-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+
+.modal-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.modal-icon {
+    width: 18px;
+    text-align: center;
+    font-size: 1rem;
+    color: #2563eb;
+}
+
+.modal-icon.icon-red {
+    color: #ef4444;
+}
+
+.modal-description {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.6;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 14px;
+}
+
+.modal-action-box {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.modal-btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.modal-btn-link:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   RESPONSIVE STYLES (TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .timeline-page-container {
+        padding: 0 12px;
+        margin-top: 20px;
+    }
+
+    .main-page-title .title-bottom {
+        font-size: 1.8rem;
+    }
+
+    .timeline-block {
+        padding: 16px;
+    }
+
+    .timeline-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .filter-group-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-item {
+        justify-content: space-between;
+    }
+
+    /* Memastikan tombol filter mudah disentuh */
+    .select-filter-pill {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .month-navigator {
+        justify-content: space-between;
+    }
+
+    /* Penyesuaian Modal pada Mobile */
+    .modal-content {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .modal-event-title {
+        font-size: 1.2rem;
+    }
+    
+    .modal-btn-link {
+        width: 100%; /* Tombol link selebar modal */
+    }
+
+    /* Penyesuaian Grid Kalender */
+    .calendar-day-cell {
+        min-height: 85px;
+        padding: 4px;
+    }
+
+    .event-badge {
+        font-size: 0.65rem;
+        padding: 4px;
+        /* Membiarkan teks turun ke bawah (wrap) agar terbaca di sel yang sempit */
+        white-space: normal;
+        word-break: break-word;
+        text-overflow: clip;
+    }
+
+    .badge-entity {
+        display: inline-block; 
+        font-size: 0.6rem;
+    }
+
+    .calendar-header-grid {
+        font-size: 0.72rem;
+    }
+
+    /* Mengubah layout Legend agar rapi di HP */
+    .legend-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tambahan khusus untuk layar Handphone yang sangat kecil (misal: iPhone SE / Android lama) */
+@media (max-width: 480px) {
+    .main-page-title .title-top {
+        font-size: 1.2rem;
+    }
+    
+    .main-page-title .title-bottom {
+        font-size: 1.5rem;
+    }
+
+    /* Mengecilkan header hari (Sen, Sel, Rab) agar pas */
+    .calendar-header-grid {
+        font-size: 0.6rem;
+        letter-spacing: 0;
+    }
+    .day-name {
+        padding: 8px 2px;
+        /* Opsional: Memotong teks nama hari (Minggu -> Min) dengan overflow di perangkat sangat kecil */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .calendar-day-cell {
+        min-height: 70px;
+        padding: 2px;
+    }
+
+    .day-number {
+        font-size: 0.75rem;
+        margin-bottom: 2px;
+    }
+
+    .event-badge {
+        font-size: 0.6rem;
+        padding: 2px 3px;
+        line-height: 1.1;
+    }
+
+    .legend-grid {
+        grid-template-columns: 1fr; /* 1 kolom penuh di layar sangat kecil */
+    }
+}

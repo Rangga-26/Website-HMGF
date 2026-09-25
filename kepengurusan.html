@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kepengurusan - HMGF UGM</title>
+
+    <!-- Salin dan tempel baris di bawah ini untuk favicon -->
+    <link rel="icon" href="assets/logo_HMGF_putih.png" type="image/png">
+    
+    <!-- Import Font Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- PANGGIL CSS BACKGROUND ACAK -->
+    <link rel="stylesheet" href="css/background.css">
+
+    <!-- CSS Navbar, Footer, Utama & Khusus Kepengurusan -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/kepengurusan.css">
+
+    <!-- CSS KHUSUS UNTUK MENGHILANGKAN SCROLLBAR -->
+    <style>
+        /* Sembunyikan scrollbar untuk Chrome, Safari dan Opera */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Sembunyikan scrollbar untuk IE, Edge dan Firefox (Halaman Utama) */
+        html, body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Sembunyikan scrollbar pada container scroll spesifik (Departemen Track) */
+        .departemen-scroll-track {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .departemen-scroll-track::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTAINER BACKGROUND ACAK (Diisi otomatis oleh JS di sepanjang tinggi scroll) -->
+    <div id="dynamic-bg-container" aria-hidden="true"></div>
+
+    <!-- Container Navbar (Fixed) -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Header / Judul Halaman -->
+    <div class="kepengurusan-header">
+        <div class="stacked-title">
+            <span class="title-top">Kepengurusan</span>
+            <span class="title-bottom">HMGF UGM</span>
+        </div>
+    </div>
+
+    <!-- MAIN DI-BERI POSITION RELATIVE & Z-INDEX AGAR KONTEN DI ATAS BACKGROUND -->
+    <main style="position: relative; z-index: 1;">
+        <!-- 1. Section Utama Kabinet OIKOS -->
+        <section class="kabinet-container">
+            <div class="kabinet-brand">
+                <img src="assets/logo_OIKOS.png" alt="Logo Kabinet OIKOS HMGF UGM" class="logo-oikos">
+                <a href="#visi-misi" class="btn-visi-misi">Visi & Misi Kabinet</a>
+            </div>
+
+            <div class="kabinet-card">
+                <div class="phpi-img-wrapper">
+                    <img src="assets/phpi.png" alt="Pengurus Harian HMGF UGM" class="phpi-img">
+                </div>
+                <p class="kabinet-philosophy">
+                    “<strong>OIKOS</strong>” berasal dari bahasa Yunani yang berarti rumah, keluarga, juga tempat kehidupan bersama. Dengan Kabinet OIKOS, himpunan dimaknai bukan hanya sebagai sebuah organisasi, melainkan sebagai rumah bersama bagi seluruh anggota HMGF untuk bertumbuh, belajar, berkontribusi, dan saling mendukung demi satu tujuan yang sama.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION FOTO PARALLAX PENGURUS -->
+        <section class="parallax-section" style="background-image: url('assets/pengurus_2627.png');">
+            <div class="parallax-overlay"></div>
+        </section>
+
+        <!-- 2. Section Logo Kabinet "OIKOS" (Filosofi Logo) -->
+        <section class="logo-section">
+            <div class="stacked-title-header">
+                <div class="stacked-title">
+                    <span class="title-top">Logo Kabinet</span>
+                    <span class="title-bottom">“ OIKOS ”</span>
+                </div>
+            </div>
+
+            <div class="logo-detail-container">
+                <div class="logo-icon-wrapper">
+                    <img src="assets/Logo_OIKOS_1.png" alt="Logo Kabinet Panah" class="logo-oikos-icon">
+                </div>
+                <div class="logo-desc-card">
+                    <h3>Logo Kabinet “PANAH”</h3>
+                    <p>
+                        “<strong>PANAH</strong>” Gestur garis runcing yang meluncur naik merepresentasikan semangat progresivitas, dinamisme, tekad untuk terus tumbuh, serta keberanian melampaui batasan.
+                    </p>
+                </div>
+            </div>
+
+            <div class="logo-detail-container reverse">
+                <div class="logo-desc-card">
+                    <h3>Logo Kabinet “ATAP RUMAH”</h3>
+                    <p>
+                        “<strong>ATAP RUMAH</strong>” Bawaan lengkung di bagian atas menggambarkan ketenangan, rasa aman, dan pengayoman. HMGF hadir sebagai pelindung yang siap merangkul beragam latar belakang anggota, memfasilitasi kebutuhan akademis maupun non-akademis, dan menciptakan ruang yang hangat untuk berproses.
+                    </p>
+                </div>
+                <div class="logo-icon-wrapper">
+                    <img src="assets/Logo_OIKOS_2.png" alt="Logo Kabinet Atap Rumah" class="logo-oikos-icon">
+                </div>
+            </div>
+
+            <div class="logo-detail-container">
+                <div class="logo-icon-wrapper">
+                    <img src="assets/Logo_OIKOS_3.png" alt="Logo Kabinet O" class="logo-oikos-icon">
+                </div>
+                <div class="logo-desc-card">
+                    <h3>Logo Kabinet “O”</h3>
+                    <p>
+                        “<strong>O</strong>” Lingkaran utuh di bagian tengah melambangkan inti, persatuan yang tak terputus, dan fokus utama. Ini menunjukkan bahwa seluruh gerak langkah kabinet berpusat pada asas kekeluargaan dan kebermanfaatan bagi anggota.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Section Visi & Misi Kabinet -->
+        <section class="visi-misi-section" id="visi-misi">
+            <div class="section-divider"></div>
+            <div class="vm-card visi-card">
+                <div class="vm-badge">Visi Kabinet</div>
+                <p>
+                    Mewujudkan HMGF UGM sebagai himpunan yang inklusif, inovatif, dan eksis, sekaligus menjadi rumah bersama yang menumbuhkan rasa memiliki, aman dan kebanggaan bagi setiap anggotanya.
+                </p>
+            </div>
+
+            <div class="vm-card misi-card">
+                <span class="vm-badge">Misi Kabinet</span>
+                <ol class="misi-list">
+                    <li>Membangun budaya organisasi yang terbuka, supportif, dan menjunjung tinggi rasa saling memiliki.</li>
+                    <li>Mengembangkan program-program inovatif yang relevan dengan kebutuhan akademik dan minat mahasiswa geofisika. Menjadikan HMGF sebagai ruang aman untuk berdiskusi, berproses, dan berkreasi tanpa rasa takut.</li>
+                    <li>Mendorong eksistensi HMGF di dalam dan luar kampus melalui kolaborasi yang sehat dan bermakna. Menguatkan identitas HMGF sebagai komunitas keilmuan yang hangat, progresif, dan membanggakan.</li>
+                    <li>Meningkatkan mutu setiap anggota HMGF UGM baik dalam hal akademik maupun eksplorasi minat dan bakat.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 4. Section Pengurus Inti HMGF UGM -->
+        <section class="pengurus-inti-section">
+            <div class="stacked-title-header">
+                <div class="stacked-title">
+                    <span class="title-top">Pengurus Inti</span>
+                    <span class="title-bottom">HMGF UGM</span>
+                </div>
+            </div>
+
+            <div class="pengurus-grid">
+                <!-- 1. SEKRETARIS -->
+                <div class="pengurus-card pos-sekretaris">
+                    <div class="pengurus-img-box">
+                        <img src="assets/photo/sekretaris.png" alt="Sekretaris HMGF UGM">
+                    </div>
+                    <div class="pengurus-info multi-person">
+                        <div class="person-item">
+                            <h4 class="pengurus-name">Marsya Salsabila</h4>
+                            <p class="pengurus-subrole">Sekretaris 1</p>
+                        </div>
+                        <div class="person-item">
+                            <h4 class="pengurus-name">Mahmudah Ashidqi</h4>
+                            <p class="pengurus-subrole">Sekretaris 2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. KETUA HMGF -->
+                <div class="pengurus-card pos-ketua">
+                    <div class="pengurus-img-box">
+                        <img src="assets/photo/ketua.png" alt="Ketua HMGF UGM">
+                    </div>
+                    <div class="pengurus-info">
+                        <h4 class="pengurus-name">Timotius Christian Sembiring</h4>
+                    </div>
+                </div>
+
+                <!-- 3. SEKRETARIS JENDERAL -->
+                <div class="pengurus-card pos-jendral">
+                    <div class="pengurus-img-box">
+                        <img src="assets/photo/sekjen.png" alt="Sekretaris Jenderal HMGF UGM">
+                    </div>
+                    <div class="pengurus-info">
+                        <h4 class="pengurus-name">M Halim Razyid Kurniawan</h4>
+                    </div>
+                </div>
+
+                <!-- 4. BENDAHARA -->
+                <div class="pengurus-card pos-bendahara">
+                    <div class="pengurus-img-box">
+                        <img src="assets/photo/bendahara.png" alt="Bendahara HMGF UGM">
+                    </div>
+                    <div class="pengurus-info multi-person">
+                        <div class="person-item">
+                            <h4 class="pengurus-name">Naisyah Tiara D. R.</h4>
+                            <p class="pengurus-subrole">Bendahara 1</p>
+                        </div>
+                        <div class="person-item">
+                            <h4 class="pengurus-name">Almira Ryke M.</h4>
+                            <p class="pengurus-subrole">Bendahara 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Section Pengurus Departemen -->
+        <section class="departemen-section">
+            <div class="departemen-header-wrapper">
+                <h2 class="departemen-title">Pengurus Departemen</h2>
+                <div class="scroll-controls">
+                    <button class="scroll-btn" id="slideLeft" aria-label="Scroll Kiri"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="scroll-btn" id="slideRight" aria-label="Scroll Kanan"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="departemen-scroll-track" id="deptTrack">
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/minkat.png" alt="Pengurus Akademik">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">M. Zaki Nasution</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Revania Azalea A.</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/akademik.png" alt="Pengurus Minkat">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Nabila Renanda S.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Sevent Novalen J. S.</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/sosmas.png" alt="Pengurus Sosmas">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Nadya Sarah F.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Artika Zahra P. K.</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/humas.png" alt="Pengurus Humas">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Farrel Dharma R.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Fikrotul Hidayah</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/internal.png" alt="Pengurus Internal">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Hafizhna Erniasari</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Lin Dhan Maurenshio</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/medinfo.png" alt="Pengurus Medinfo">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Yasfa Kamilla L.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Rangga Adi Nugraha</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>                
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/psdm.png" alt="Pengurus PSDM">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Dinda Nur Isabila R.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Zhafran Abyan</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>                
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/kewirus.png" alt="Pengurus Kewirus">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Jilliant Aufa Exel C.</p>
+                            <p class="member-role">Kepala Departemen</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Daniswara Syifaa R.</p>
+                            <p class="member-role">Wakil Kepala Departemen</p>
+                        </div>
+                    </div>
+                </div>                          
+                <div class="dept-card">
+                    <div class="dept-img-box">
+                        <img src="assets/photo/seg.png" alt="Pengurus SEG">
+                    </div>
+                    <div class="dept-members">
+                        <div class="member-badge">
+                            <p class="member-name">Auditya Sofyananda Pratama</p>
+                            <p class="member-role">President</p>
+                        </div>
+                        <div class="member-badge">
+                            <p class="member-name">Rifai Aldi Tri Kurniawan</p>
+                            <p class="member-role">Vice President</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Container Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script Navbar & Route Handler -->
+    <script src="js/navbar.js"></script>
+
+    <!-- Script Component Loader & Active Link Highlighter -->
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => { 
+                document.getElementById('navbar-placeholder').innerHTML = data; 
+                highlightActiveMenu();
+
+                if (typeof initNavbarScroll === 'function') {
+                    initNavbarScroll();
+                }
+            })
+            .catch(err => console.error('Gagal memuat navbar:', err));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+            .catch(err => console.error('Gagal memuat footer:', err));
+
+        function highlightActiveMenu() {
+            document.querySelectorAll('.navbar-wrapper .active').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            const kepengurusanLink = document.querySelector('.dropdown-menu a[href*="kepengurusan.html"]');
+            
+            if (kepengurusanLink) {
+                kepengurusanLink.classList.add('active');
+                const parentNavItem = kepengurusanLink.closest('.nav-item');
+                if (parentNavItem) {
+                    const parentLink = parentNavItem.querySelector('.nav-link');
+                    if (parentLink) {
+                        parentLink.classList.add('active');
+                    }
+                }
+            }
+        }
+
+        const track = document.getElementById('deptTrack');
+        const btnLeft = document.getElementById('slideLeft');
+        const btnRight = document.getElementById('slideRight');
+
+        if(btnLeft && btnRight && track) {
+            btnLeft.addEventListener('click', () => {
+                track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+            });
+
+            btnRight.addEventListener('click', () => {
+                track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+            });
+        }
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/seismic-cursor.js"></script>
+
+    <!-- PANGGIL JS BACKGROUND ACAK -->
+    <script src="js/background.js"></script>
+</body>
+</html>

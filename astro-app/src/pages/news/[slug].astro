@@ -1,0 +1,13 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getArticle, escapeHtml } from "../../lib/data";
+import katex from "katex";
+import "katex/dist/katex.min.css";
+const slug = Astro.params.slug || ""; const article = await getArticle(Astro.locals.runtime.env, slug); if (!article) return Astro.redirect("/404", 404);
+function render(text: string) { const safe = escapeHtml(text); const withMath = safe.replace(/\\\((.+?)\\\)/g, (_, expression) => katex.renderToString(expression, { throwOnError: false })).replace(/\$\$(.+?)\$\$/g, (_, expression) => katex.renderToString(expression, { displayMode: true, throwOnError: false })); return withMath.startsWith("#") ? `<h2>${withMath.replace(/^#+\s*/, "")}</h2>` : `<p>${withMath}</p>`; }
+---
+<Base title={`${article.title} | HMGF UGM`}>
+  <main class="article-detail"><a href="/">← Kembali ke arsip</a><p class="eyebrow">{article.source}</p><h1>{article.title}</h1><p class="muted">{article.date} · {article.author}{article.course && ` · ${article.course}`}</p>{article.image && <img class="article-image" src={article.image} alt="" />}{article.link && <p><a href={article.link} rel="noopener noreferrer">Buka berkas atau video</a></p>}<div class="article-body" set:html={article.paragraphs.map(render).join("")} />
+    <form method="post" action="/api/comments" class="comment-form"><h2>Diskusi</h2><input type="hidden" name="articleId" value={article.id} /><input type="hidden" name="articleTitle" value={article.title} /><label for="name">Nama</label><input id="name" name="name" required maxlength="100" /><label for="email">Email (opsional)</label><input id="email" name="email" type="email" /><label for="text">Komentar</label><textarea id="text" name="text" required maxlength="5000"></textarea><div class="turnstile-placeholder">Turnstile token diperlukan. Konfigurasikan widget Turnstile pada deployment.</div><input name="cf-turnstile-response" required placeholder="Token Turnstile" /><button type="submit">Kirim komentar</button></form>
+  </main>
+</Base>

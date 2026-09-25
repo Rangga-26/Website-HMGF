@@ -1,0 +1,344 @@
+/* ==========================================================================
+   KONTAK PAGE STYLES
+   - System: Clean Glass Monochrome (Pure Black & White Theme)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+:root {
+    /* Base & Surface Colors */
+    --bg-light: #ffffff;
+    --bg-surface: #f8fafc;
+    --border-color: #e2e8f0;
+    
+    /* Card Glassmorphic Monochrome */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-bg-hover: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-border-hover: rgba(0, 0, 0, 0.25);
+    
+    /* Brand & Accent Colors */
+    --accent-black: #0f172a;
+    --accent-gray: #334155;
+    --accent-gray-light: #f1f5f9;
+    --accent-gray-border: #cbd5e1;
+    --primary-color: #0f172a;
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-dark: #0f172a;
+    --text-body: #334155;
+    --text-dim: #64748b;
+    --text-muted: #94a3b8;
+    
+    /* Shadows & Radii */
+    --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.03);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --radius-lg: 18px;
+    --radius-md: 10px;
+    
+    /* Typography & Layout */
+    --font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --navbar-height: 90px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.berita-hero {
+    position: relative;
+    width: 100%;
+    min-height: 460px; 
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(var(--navbar-height) + 60px) 20px 60px 20px;
+    box-sizing: border-box;
+    background-image: url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=2071&auto=format&fit=crop'); 
+}
+
+.berita-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.9) 100%);
+    z-index: 1;
+}
+
+.berita-hero-title-container {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
+}
+
+.berita-hero-title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.35;
+    margin: 0 0 12px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.berita-hero-author {
+    color: #e2e8f0;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.berita-content-container {
+    max-width: 1000px;
+    margin: 30px auto 80px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   CONTACT LAYOUT & BOXES
+   ========================================================================== */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.contact-info-box {
+    background: rgba(248, 250, 252, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.contact-info-box i { 
+    color: #0f172a !important; 
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    margin-top: 4px;
+}
+
+.contact-item h4 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    color: #0f172a;
+}
+
+.contact-item p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   FORM STYLES
+   ========================================================================== */
+
+.comment-form-wrapper {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+}
+
+.comment-form-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-black);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+.btn-submit-comment {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--accent-black);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit-contact i { 
+    color: #ffffff !important; 
+}
+
+.btn-submit-comment:hover {
+    background-color: var(--accent-gray);
+}
+
+/* ==========================================================================
+   MAP STYLES
+   ========================================================================== */
+
+.map-wrapper {
+    margin-top: 40px;
+    background: rgba(248, 250, 252, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.map-wrapper h4 {
+    margin: 0 0 16px 0;
+    font-size: 1.1rem;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DEVICE HANDPHONE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Penyesuaian Header pada Layar Sedang/Kecil */
+    .berita-hero {
+        padding: calc(var(--navbar-height) + 30px) 16px 40px 16px;
+        min-height: 320px;
+    }
+    .berita-hero-title {
+        font-size: 1.75rem;
+    }
+    .berita-hero-author {
+        font-size: 0.95rem;
+    }
+
+    /* Padding Konten */
+    .berita-content-container {
+        margin: 20px auto 50px auto;
+        padding: 0 16px;
+    }
+
+    /* Ubah Grid menjadi Satu Kolom (Atas-Bawah) */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .form-group-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Penyesuaian Ruang Kotak Formulir & Kontak */
+    .contact-info-box, 
+    .comment-form-wrapper {
+        padding: 20px;
+    }
+
+    /* Buat Tombol Penuh Seukuran Layar Handphone */
+    .btn-submit-comment {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Penyesuaian Map */
+    .map-wrapper {
+        margin-top: 30px;
+        padding: 16px;
+    }
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* Tambahan Khusus untuk Handphone Layar Sangat Kecil */
+@media (max-width: 480px) {
+    .berita-hero-title {
+        font-size: 1.5rem;
+    }
+    .map-container {
+        height: 250px;
+    }
+}
